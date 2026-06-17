@@ -9411,3 +9411,323 @@ select option {
   opacity: 0 !important;
   animation: none !important;
 }
+
+/* v40: readable glass popovers, clean humidity water and flat logo background */
+.month-modal-backdrop,
+.map-modal-backdrop {
+  background: rgba(6, 12, 31, 0.42) !important;
+  backdrop-filter: blur(26px) saturate(128%) brightness(0.82) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(128%) brightness(0.82) !important;
+}
+
+.month-calendar-card,
+.map-modal-card,
+.date-picker-popover,
+.city-suggestions,
+.favorites-popover,
+.custom-select-menu {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.075)),
+    linear-gradient(180deg, rgba(83, 123, 166, 0.68), rgba(35, 55, 104, 0.74)) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow:
+    0 34px 92px rgba(0, 8, 32, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24) !important;
+  backdrop-filter: blur(42px) saturate(170%) brightness(1.03) !important;
+  -webkit-backdrop-filter: blur(42px) saturate(170%) brightness(1.03) !important;
+}
+
+.theme-clear-day .month-calendar-card,
+.theme-clear-day .map-modal-card,
+.theme-clear-day .date-picker-popover,
+.theme-clear-day .city-suggestions,
+.theme-clear-day .favorites-popover,
+.theme-clear-day .custom-select-menu,
+.theme-partly .month-calendar-card,
+.theme-partly .map-modal-card,
+.theme-partly .date-picker-popover,
+.theme-partly .city-suggestions,
+.theme-partly .favorites-popover,
+.theme-partly .custom-select-menu {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.075)),
+    linear-gradient(180deg, rgba(79, 158, 205, 0.66), rgba(52, 98, 157, 0.74)) !important;
+}
+
+.theme-rain .month-calendar-card,
+.theme-rain .map-modal-card,
+.theme-rain .date-picker-popover,
+.theme-rain .city-suggestions,
+.theme-rain .favorites-popover,
+.theme-rain .custom-select-menu,
+.theme-thunder .month-calendar-card,
+.theme-thunder .map-modal-card,
+.theme-thunder .date-picker-popover,
+.theme-thunder .city-suggestions,
+.theme-thunder .favorites-popover,
+.theme-thunder .custom-select-menu {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.060)),
+    linear-gradient(180deg, rgba(62, 78, 124, 0.72), rgba(29, 42, 86, 0.80)) !important;
+}
+
+.month-day-cell,
+.month-control-pill,
+.month-calendar-grid,
+.month-calendar-legend,
+.date-picker-day,
+.date-picker-grid,
+.date-picker-head,
+.city-suggestion,
+.favorite-place,
+.save-favorite-button,
+.custom-select-menu button,
+.map-zoom-controls button,
+.map-corner-time,
+.map-center-coordinates {
+  background-color: rgba(255, 255, 255, 0.13) !important;
+  border-color: rgba(255, 255, 255, 0.19) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+
+.month-day-cell:hover,
+.date-picker-day:hover,
+.city-suggestion:hover,
+.favorite-place:hover,
+.save-favorite-button:hover,
+.custom-select-menu button:hover,
+.map-zoom-controls button:hover {
+  background-color: rgba(255, 255, 255, 0.20) !important;
+}
+
+.interactive-map-canvas {
+  background: rgba(24, 33, 58, 0.92) !important;
+}
+
+.humidity-cuboid-water-front {
+  fill: rgba(74, 205, 255, 0.72) !important;
+  stroke: rgba(199, 253, 255, 0.30) !important;
+  stroke-width: 1.1 !important;
+}
+
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  background: #2289e6 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow:
+    inset 0 -10px 22px rgba(0, 55, 140, 0.24),
+    0 15px 31px rgba(0, 0, 0, 0.17) !important;
+}
+
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after,
+.brand-hero .brand-app-icon.static-app-logo::before,
+.brand-hero .brand-app-icon.static-app-logo::after,
+.app-logo-gloss,
+.brand-hero .app-logo-gloss {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* v41: centered saturated app logo and brighter text over photo backgrounds */
+.weather-app,
+.weather-app.rich-bg {
+  --text: rgba(255, 255, 255, 0.99);
+  --muted: rgba(255, 255, 255, 0.84);
+  --faint: rgba(255, 255, 255, 0.66);
+}
+
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  background: #168bef !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  box-shadow:
+    inset 0 -12px 22px rgba(0, 70, 165, 0.20),
+    0 17px 31px rgba(0, 21, 65, 0.20) !important;
+}
+
+.app-logo-sun,
+.brand-hero .app-logo-sun {
+  z-index: 2 !important;
+  left: 21% !important;
+  top: 19% !important;
+  width: 38% !important;
+  height: 38% !important;
+  background: radial-gradient(circle at 34% 32%, #fffde0 0 12%, #fff06a 37%, #ffc928 66%, #ffae17 100%) !important;
+  box-shadow:
+    0 0 20px rgba(255, 232, 79, 0.88),
+    0 0 34px rgba(255, 185, 24, 0.46) !important;
+}
+
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before {
+  inset: -42% !important;
+  background: repeating-conic-gradient(from 4deg, rgba(255, 242, 93, 0.95) 0deg 7deg, transparent 7deg 18deg) !important;
+  -webkit-mask: radial-gradient(circle, transparent 0 48%, #000 50% 76%, transparent 78%) !important;
+  mask: radial-gradient(circle, transparent 0 48%, #000 50% 76%, transparent 78%) !important;
+}
+
+.app-logo-sun::after,
+.brand-hero .app-logo-sun::after {
+  inset: -24% !important;
+  background: radial-gradient(circle, rgba(255, 229, 71, 0.42), transparent 69%) !important;
+}
+
+.app-logo-cloud-back,
+.brand-hero .app-logo-cloud-back {
+  z-index: 3 !important;
+  left: 29% !important;
+  bottom: 36% !important;
+  width: 43% !important;
+  height: 22% !important;
+  opacity: 0.58 !important;
+}
+
+.app-logo-cloud-front,
+.brand-hero .app-logo-cloud-front {
+  z-index: 4 !important;
+  left: 24% !important;
+  bottom: 23% !important;
+  width: 62% !important;
+  height: 34% !important;
+  opacity: 1 !important;
+}
+
+.app-logo-cloud,
+.brand-hero .app-logo-cloud {
+  background:
+    radial-gradient(circle at 23% 29%, rgba(255, 255, 255, 1) 0 17%, transparent 18%),
+    radial-gradient(circle at 43% 9%, rgba(255, 255, 255, 1) 0 26%, transparent 27%),
+    radial-gradient(circle at 64% 3%, rgba(255, 255, 255, 1) 0 31%, transparent 32%),
+    radial-gradient(circle at 84% 31%, rgba(244, 249, 255, 1) 0 21%, transparent 22%),
+    linear-gradient(180deg, #ffffff 0%, #f2f7ff 54%, #c7d8f0 100%) !important;
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.82),
+    inset 0 -10px 14px rgba(113, 135, 184, 0.19),
+    0 2px 6px rgba(0, 39, 105, 0.16) !important;
+}
+
+.brand-caption,
+.home-label,
+.condition-line,
+.place-subtitle,
+.minmax-line,
+.card-title,
+.card-title h3,
+.field span,
+.hour-chip span,
+.hour-chip small,
+.daily-row,
+.rain-chance,
+.low-temp,
+.mini-label,
+.mini-card p,
+.map-note,
+.map-marker span,
+.map-modal-footer,
+.month-calendar-header,
+.month-weekdays,
+.month-calendar-legend,
+.date-picker-weekdays,
+.range-picker-hint,
+.city-suggestion small,
+.city-suggestion em,
+.favorite-place small,
+.favorite-place em,
+.custom-select-button,
+.ghost-button,
+input,
+select {
+  color: rgba(255, 255, 255, 0.91) !important;
+  text-shadow: 0 2px 12px rgba(0, 15, 42, 0.30);
+}
+
+.card-title .scroll-hint,
+.map-open-pill,
+.hour-chip small,
+.month-day-cell,
+.date-picker-day,
+.daily-row .rain-chance,
+.daily-row .low-temp {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.hero-section,
+.forecast-card,
+.mini-card,
+.controls-panel {
+  text-shadow: 0 2px 16px rgba(0, 18, 48, 0.28);
+}
+
+/* v42: balance app logo spacing and make the favicon shape readable at tiny sizes */
+.app-logo-sun,
+.brand-hero .app-logo-sun {
+  left: 25% !important;
+  top: 24% !important;
+  width: 36% !important;
+  height: 36% !important;
+}
+
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before {
+  inset: -36% !important;
+}
+
+.app-logo-cloud-back,
+.brand-hero .app-logo-cloud-back {
+  left: 31% !important;
+  bottom: 34% !important;
+  width: 40% !important;
+  height: 22% !important;
+}
+
+.app-logo-cloud-front,
+.brand-hero .app-logo-cloud-front {
+  left: 27% !important;
+  bottom: 18% !important;
+  width: 58% !important;
+  height: 33% !important;
+}
+
+/* v43: clearer favicon support, uniform humidity water and stronger calendar range */
+.humidity-cuboid-water-top {
+  fill: rgba(74, 205, 255, 0.72) !important;
+  stroke: rgba(199, 253, 255, 0.30) !important;
+  stroke-width: 1.1 !important;
+}
+
+.date-picker-day.in-range,
+.date-picker-day.in-range.range-start,
+.date-picker-day.in-range.range-end,
+.date-picker-day.in-range.selected,
+.date-picker-day.range-start,
+.date-picker-day.range-end,
+.date-picker-day.selected {
+  color: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(164, 232, 255, 0.58) !important;
+  background:
+    linear-gradient(180deg, rgba(77, 184, 242, 0.62), rgba(38, 117, 207, 0.54)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 0 16px rgba(57, 178, 255, 0.20) !important;
+}
+
+.date-picker-day.in-range:hover,
+.date-picker-day.range-start:hover,
+.date-picker-day.range-end:hover {
+  background:
+    linear-gradient(180deg, rgba(89, 202, 255, 0.70), rgba(43, 132, 226, 0.62)) !important;
+}
