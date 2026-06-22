@@ -9731,3 +9731,5853 @@ select {
   background:
     linear-gradient(180deg, rgba(89, 202, 255, 0.70), rgba(43, 132, 226, 0.62)) !important;
 }
+
+/* v44: responsive layer for tablets and phones; desktop layout above 1200px is preserved */
+@media (max-width: 1200px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .weather-app {
+    min-height: 100dvh;
+  }
+
+  .weather-shell {
+    width: min(100% - 32px, 1060px) !important;
+    padding: 22px 0 max(42px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .brand-hero.top-panel {
+    padding: 16px 18px !important;
+  }
+
+  .controls-panel {
+    padding: 15px !important;
+  }
+
+  .controls-panel .search-line {
+    grid-template-columns: minmax(280px, 1fr) auto auto auto !important;
+    gap: 11px !important;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1.06fr) minmax(330px, 0.94fr) !important;
+    gap: 16px !important;
+  }
+
+  .hourly-card {
+    grid-column: 1 / -1 !important;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+}
+
+@media (max-width: 980px) {
+  .weather-shell {
+    width: min(100% - 26px, 820px) !important;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .daily-card,
+  .precip-map-card,
+  .details-grid {
+    grid-column: 1 / -1 !important;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .controls-panel .search-line,
+  .controls-panel .coords-line {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .controls-panel .city-field,
+  .controls-panel .field-wide {
+    grid-column: 1 / -1 !important;
+  }
+
+  .controls-panel .primary-button,
+  .controls-panel .location-button,
+  .controls-panel .favorite-menu-wrap,
+  .controls-panel .advanced-toggle,
+  .controls-panel .select-field {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .city-suggestions,
+  .favorites-popover,
+  .custom-select-menu {
+    max-width: min(100vw - 34px, 760px) !important;
+  }
+
+  .month-calendar-card {
+    width: min(100% - 24px, 820px) !important;
+  }
+
+  .map-modal-card {
+    width: min(100% - 24px, 920px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --shadow: 0 18px 46px rgba(5, 11, 31, 0.24);
+  }
+
+  .weather-shell {
+    width: min(100% - 20px, 620px) !important;
+    padding-top: 12px !important;
+    padding-bottom: max(28px, calc(18px + env(safe-area-inset-bottom))) !important;
+  }
+
+  .brand-hero.top-panel {
+    position: sticky !important;
+    top: max(8px, env(safe-area-inset-top)) !important;
+    z-index: 45 !important;
+    border-radius: 27px !important;
+    padding: 12px !important;
+    margin-bottom: 11px !important;
+  }
+
+  .brand-hero .brand-block {
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 12px !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: clamp(58px, 16vw, 72px) !important;
+    height: clamp(58px, 16vw, 72px) !important;
+    flex: 0 0 clamp(58px, 16vw, 72px) !important;
+    border-radius: clamp(17px, 4.6vw, 22px) !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: flex !important;
+    max-width: calc(100vw - 118px) !important;
+    margin-bottom: 4px !important;
+    gap: 7px !important;
+    overflow: hidden !important;
+    font-size: clamp(8px, 2vw, 10px) !important;
+    letter-spacing: 0.24em !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 118px) !important;
+    overflow: hidden !important;
+    font-size: clamp(35px, 12vw, 56px) !important;
+    line-height: 0.88 !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .controls-panel {
+    position: relative !important;
+    z-index: 35 !important;
+    padding: 12px !important;
+    border-radius: 25px !important;
+  }
+
+  .controls-panel .search-line,
+  .controls-panel .coords-line {
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+  }
+
+  .field,
+  .controls-panel .field,
+  .custom-select-field {
+    min-width: 0 !important;
+  }
+
+  .search-input-wrap input,
+  .controls-panel input,
+  .controls-panel select,
+  .custom-select-button,
+  .primary-button,
+  .ghost-button,
+  .segmented {
+    width: 100% !important;
+    min-height: 46px !important;
+    border-radius: 17px !important;
+  }
+
+  .segmented {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .city-suggestions,
+  .favorites-popover,
+  .custom-select-menu {
+    position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
+    top: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(72dvh, 560px) !important;
+    overflow: auto !important;
+    border-radius: 27px !important;
+    padding: 12px !important;
+    z-index: 120 !important;
+  }
+
+  .city-suggestion,
+  .favorite-place,
+  .save-favorite-button,
+  .custom-select-menu button {
+    min-height: 50px !important;
+    border-radius: 18px !important;
+  }
+
+  .hero-section {
+    padding: 22px 4px 27px !important;
+  }
+
+  .hero-section h2 {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    font-size: clamp(36px, 13.8vw, 66px) !important;
+    line-height: 0.98 !important;
+  }
+
+  .place-subtitle,
+  .minmax-line {
+    padding-inline: 6px !important;
+    font-size: clamp(15px, 4.2vw, 19px) !important;
+  }
+
+  .hero-temp-wrap {
+    gap: 4px !important;
+    justify-content: center !important;
+  }
+
+  .weather-symbol-hero {
+    --scale: clamp(1.28, 0.92 + 1.6vw, 1.62) !important;
+  }
+
+  .hero-temp span {
+    font-size: clamp(84px, 28vw, 128px) !important;
+    letter-spacing: -0.10em !important;
+  }
+
+  .hero-temp sup {
+    font-size: clamp(31px, 9vw, 42px) !important;
+  }
+
+  .forecast-card,
+  .mini-card {
+    border-radius: 25px !important;
+  }
+
+  .forecast-card {
+    padding: 14px !important;
+  }
+
+  .card-title {
+    gap: 8px !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .card-title h3 {
+    font-size: 12px !important;
+  }
+
+  .card-title .scroll-hint {
+    display: none !important;
+  }
+
+  .hourly-strip-shell {
+    margin-inline: -6px !important;
+    padding-inline: 6px !important;
+  }
+
+  .hourly-strip {
+    gap: 9px !important;
+    padding: 0 2px 4px !important;
+    scroll-snap-type: x proximity !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .hour-chip {
+    flex: 0 0 clamp(84px, 24vw, 102px) !important;
+    min-width: clamp(84px, 24vw, 102px) !important;
+    scroll-snap-align: start !important;
+    padding: 11px 7px !important;
+    border-radius: 22px !important;
+  }
+
+  .daily-title {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+  }
+
+  .month-forecast-button {
+    min-height: 38px !important;
+    padding: 8px 10px !important;
+    border-radius: 15px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .daily-row {
+    grid-template-columns: minmax(72px, 1fr) 34px 38px 34px minmax(72px, 1fr) 38px !important;
+    gap: 7px !important;
+    min-height: 58px !important;
+    padding: 0 7px !important;
+    border-radius: 18px !important;
+  }
+
+  .day-name,
+  .high-temp {
+    font-size: 15px !important;
+  }
+
+  .rain-chance,
+  .low-temp {
+    font-size: 12px !important;
+  }
+
+  .range-track {
+    min-width: 62px !important;
+  }
+
+  .weather-map {
+    min-height: clamp(240px, 62vw, 360px) !important;
+    border-radius: 23px !important;
+  }
+
+  .map-note {
+    font-size: 13px !important;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr !important;
+    gap: 11px !important;
+  }
+
+  .mini-card {
+    min-height: 142px !important;
+    padding: 15px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) minmax(98px, 122px) !important;
+    gap: 10px !important;
+  }
+
+  .mini-card strong {
+    font-size: clamp(28px, 8vw, 36px) !important;
+  }
+
+  .mini-card p {
+    font-size: 13px !important;
+  }
+
+  .uv-graphic,
+  .pressure-graphic,
+  .wind-graphic,
+  .sun-graphic,
+  .humidity-graphic,
+  .humidity-graphic-cuboid,
+  .precip-graphic,
+  .visibility-graphic,
+  .temp-graphic {
+    width: min(122px, 31vw) !important;
+    min-width: min(122px, 31vw) !important;
+  }
+
+  .month-calendar-modal,
+  .map-modal {
+    align-items: end !important;
+    place-items: end center !important;
+    padding: 0 !important;
+  }
+
+  .month-calendar-card,
+  .map-modal-card {
+    width: 100% !important;
+    max-width: none !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    border-radius: 30px 30px 0 0 !important;
+  }
+
+  .month-calendar-card {
+    max-height: min(90dvh, 760px) !important;
+    padding: 17px 11px max(16px, env(safe-area-inset-bottom)) !important;
+    overflow: auto !important;
+  }
+
+  .month-calendar-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 3 !important;
+    padding: 2px 6px 12px !important;
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+  }
+
+  .month-calendar-header h3 {
+    font-size: 19px !important;
+  }
+
+  .month-close-button,
+  .map-close-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  .month-calendar-controls,
+  .month-single-range-controls {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 0 4px 12px !important;
+  }
+
+  .month-control-pill {
+    min-height: 45px !important;
+    justify-content: center !important;
+  }
+
+  .month-weekdays {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    padding-inline: 2px !important;
+  }
+
+  .month-weekdays span {
+    font-size: 11px !important;
+  }
+
+  .month-calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    gap: 4px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 2px !important;
+  }
+
+  .month-day-cell {
+    min-height: clamp(58px, 14.5vw, 72px) !important;
+    padding: 5px 3px !important;
+    border-radius: 15px !important;
+  }
+
+  .month-day-cell b {
+    font-size: 12px !important;
+  }
+
+  .month-day-cell span,
+  .month-day-cell .month-day-temps {
+    font-size: 10px !important;
+    line-height: 1.05 !important;
+  }
+
+  .month-day-cell .weather-symbol-sm {
+    --scale: 0.62 !important;
+  }
+
+  .month-calendar-legend {
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 10px 4px 0 !important;
+    font-size: 11px !important;
+  }
+
+  .date-picker-popover.range-picker-popover {
+    position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
+    top: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-height: 76dvh !important;
+    overflow: auto !important;
+    z-index: 150 !important;
+  }
+
+  .date-picker-grid {
+    gap: 5px !important;
+  }
+
+  .date-picker-day {
+    min-height: 40px !important;
+    border-radius: 14px !important;
+  }
+
+  .map-modal-card {
+    height: min(91dvh, 820px) !important;
+    grid-template-rows: auto minmax(0, 1fr) auto !important;
+    padding: 13px 11px max(13px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .map-modal-header {
+    padding: 0 2px 10px !important;
+  }
+
+  .map-modal-header h3 {
+    font-size: clamp(18px, 5.2vw, 23px) !important;
+  }
+
+  .interactive-map-canvas {
+    min-height: 380px !important;
+    border-radius: 24px !important;
+    touch-action: none !important;
+  }
+
+  .map-zoom-controls {
+    right: 10px !important;
+    top: 10px !important;
+  }
+
+  .map-zoom-controls button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .map-corner-time,
+  .map-center-coordinates {
+    font-size: 11px !important;
+    border-radius: 14px !important;
+  }
+
+  .map-modal-footer {
+    display: grid !important;
+    gap: 3px !important;
+    padding: 10px 3px 0 !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .weather-shell {
+    width: calc(100% - 14px) !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: none !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 94px) !important;
+    font-size: clamp(33px, 13vw, 47px) !important;
+  }
+
+  .controls-panel .field span {
+    font-size: 11px !important;
+  }
+
+  .hero-section h2 {
+    font-size: clamp(31px, 13.2vw, 52px) !important;
+  }
+
+  .hero-temp-wrap {
+    transform: translateX(-4px);
+  }
+
+  .daily-row {
+    grid-template-columns: minmax(60px, 1fr) 31px 35px 31px minmax(58px, 0.9fr) 34px !important;
+    gap: 5px !important;
+    padding: 0 5px !important;
+  }
+
+  .daily-row .weather-symbol-sm {
+    --scale: 0.70 !important;
+  }
+
+  .range-track {
+    min-width: 48px !important;
+  }
+
+  .weather-map {
+    min-height: 250px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) 94px !important;
+  }
+
+  .uv-graphic,
+  .pressure-graphic,
+  .wind-graphic,
+  .sun-graphic,
+  .humidity-graphic,
+  .humidity-graphic-cuboid,
+  .precip-graphic,
+  .visibility-graphic,
+  .temp-graphic {
+    width: 94px !important;
+    min-width: 94px !important;
+  }
+
+  .month-calendar-card {
+    max-height: 92dvh !important;
+    border-radius: 27px 27px 0 0 !important;
+  }
+
+  .month-calendar-grid {
+    gap: 3px !important;
+  }
+
+  .month-day-cell {
+    min-height: 56px !important;
+    border-radius: 13px !important;
+  }
+
+  .month-day-cell .weather-symbol-sm {
+    --scale: 0.54 !important;
+  }
+
+  .month-day-cell span {
+    display: none !important;
+  }
+
+  .interactive-map-canvas {
+    min-height: 360px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .weather-shell {
+    width: calc(100% - 10px) !important;
+  }
+
+  .brand-hero.top-panel {
+    border-radius: 23px !important;
+    padding: 9px !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 52px !important;
+    height: 52px !important;
+    flex-basis: 52px !important;
+    border-radius: 16px !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 82px) !important;
+    font-size: clamp(29px, 12.6vw, 40px) !important;
+  }
+
+  .controls-panel,
+  .forecast-card,
+  .mini-card {
+    padding: 11px !important;
+  }
+
+  .hero-temp span {
+    font-size: clamp(74px, 27vw, 104px) !important;
+  }
+
+  .weather-symbol-hero {
+    --scale: 1.15 !important;
+  }
+
+  .daily-row {
+    grid-template-columns: minmax(52px, 1fr) 28px 31px 29px minmax(44px, 0.85fr) 31px !important;
+    min-height: 54px !important;
+    gap: 4px !important;
+  }
+
+  .day-name,
+  .high-temp {
+    font-size: 13px !important;
+  }
+
+  .rain-chance,
+  .low-temp {
+    font-size: 11px !important;
+  }
+
+  .month-forecast-button {
+    padding-inline: 8px !important;
+    font-size: 11px !important;
+  }
+
+  .mini-card {
+    min-height: 134px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) 82px !important;
+  }
+
+  .uv-graphic,
+  .pressure-graphic,
+  .wind-graphic,
+  .sun-graphic,
+  .humidity-graphic,
+  .humidity-graphic-cuboid,
+  .precip-graphic,
+  .visibility-graphic,
+  .temp-graphic {
+    width: 82px !important;
+    min-width: 82px !important;
+  }
+
+  .month-weekdays span {
+    font-size: 10px !important;
+  }
+
+  .month-day-cell {
+    min-height: 49px !important;
+    padding: 4px 2px !important;
+  }
+
+  .month-day-cell b {
+    font-size: 11px !important;
+  }
+
+  .interactive-map-canvas {
+    min-height: 330px !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .primary-button,
+  .ghost-button,
+  .icon-button,
+  .daily-row,
+  .hour-chip,
+  .month-day-cell,
+  .date-picker-day,
+  .city-suggestion,
+  .favorite-place,
+  .custom-select-menu button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .primary-button:hover,
+  .ghost-button:hover,
+  .daily-row:hover,
+  .month-day-cell:hover,
+  .date-picker-day:hover,
+  .city-suggestion:hover,
+  .favorite-place:hover,
+  .custom-select-menu button:hover {
+    transform: none !important;
+  }
+}
+
+/* v45: compact mobile fix after real-device check */
+@media (max-width: 760px) {
+  .weather-shell {
+    width: min(100% - 14px, 480px) !important;
+    padding-top: 8px !important;
+  }
+
+  .brand-hero.top-panel {
+    position: relative !important;
+    top: auto !important;
+    z-index: 20 !important;
+    padding: 9px 11px !important;
+    margin-bottom: 9px !important;
+    border-radius: 22px !important;
+  }
+
+  .brand-hero .brand-block {
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 56px !important;
+    height: 56px !important;
+    flex: 0 0 56px !important;
+    border-radius: 17px !important;
+    overflow: hidden !important;
+  }
+
+  .brand-hero .app-logo-sun,
+  .app-logo-sun {
+    display: block !important;
+    opacity: 1 !important;
+    z-index: 2 !important;
+    left: 14% !important;
+    top: 14% !important;
+    width: 38% !important;
+    height: 38% !important;
+  }
+
+  .brand-hero .app-logo-sun::before,
+  .app-logo-sun::before {
+    display: block !important;
+    opacity: 1 !important;
+    inset: -38% !important;
+  }
+
+  .brand-hero .app-logo-sun::after,
+  .app-logo-sun::after {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .brand-hero .app-logo-cloud-back,
+  .app-logo-cloud-back {
+    left: 27% !important;
+    bottom: 34% !important;
+    width: 38% !important;
+    height: 20% !important;
+  }
+
+  .brand-hero .app-logo-cloud-front,
+  .app-logo-cloud-front {
+    left: 22% !important;
+    bottom: 20% !important;
+    width: 60% !important;
+    height: 32% !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: none !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 92px) !important;
+    font-size: clamp(30px, 8.4vw, 38px) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .controls-panel {
+    padding: 10px !important;
+    border-radius: 22px !important;
+  }
+
+  .controls-panel .search-line,
+  .controls-panel .coords-line {
+    gap: 8px !important;
+  }
+
+  .controls-panel .field span {
+    margin-bottom: 6px !important;
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+  }
+
+  .search-input-wrap input,
+  .controls-panel input,
+  .custom-select-button,
+  .primary-button,
+  .ghost-button,
+  .segmented {
+    min-height: 40px !important;
+    border-radius: 15px !important;
+    font-size: 13px !important;
+  }
+
+  .hero-section {
+    padding: 18px 4px 22px !important;
+  }
+
+  .hero-section h2 {
+    font-size: clamp(34px, 10vw, 46px) !important;
+  }
+
+  .place-subtitle,
+  .minmax-line {
+    font-size: 14px !important;
+  }
+
+  .hero-temp span {
+    font-size: clamp(78px, 23vw, 104px) !important;
+  }
+
+  .hero-temp sup {
+    font-size: 28px !important;
+  }
+
+  .weather-symbol-hero {
+    --scale: 1.12 !important;
+  }
+
+  .dashboard-grid {
+    gap: 10px !important;
+  }
+
+  .forecast-card {
+    padding: 12px !important;
+    border-radius: 22px !important;
+  }
+
+  .card-title {
+    min-width: 0 !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .card-title h3 {
+    min-width: 0 !important;
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+  }
+
+  .hourly-card {
+    overflow: hidden !important;
+  }
+
+  .hourly-strip-shell {
+    margin-inline: -8px !important;
+    padding-inline: 8px !important;
+    overflow: hidden !important;
+  }
+
+  .hourly-strip {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 7px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0 2px 3px !important;
+    scroll-snap-type: x proximity !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+  }
+
+  .hour-chip {
+    flex: 0 0 72px !important;
+    min-width: 72px !important;
+    max-width: 72px !important;
+    gap: 4px !important;
+    padding: 8px 5px !important;
+    border-radius: 18px !important;
+    scroll-snap-align: start !important;
+  }
+
+  .hour-chip .weather-symbol-sm {
+    --scale: 0.55 !important;
+  }
+
+  .hour-chip span,
+  .hour-chip small {
+    font-size: 10px !important;
+    line-height: 1.05 !important;
+  }
+
+  .hour-chip b {
+    font-size: 14px !important;
+    line-height: 1.05 !important;
+  }
+
+  .daily-card {
+    overflow: hidden !important;
+  }
+
+  .daily-list {
+    min-width: 0 !important;
+  }
+
+  .daily-row {
+    width: 100% !important;
+    min-width: 0 !important;
+    grid-template-columns: minmax(54px, 0.95fr) 27px 31px 28px minmax(52px, 1fr) 30px !important;
+    gap: 4px !important;
+    min-height: 48px !important;
+    padding: 0 5px !important;
+    overflow: hidden !important;
+    border-radius: 15px !important;
+  }
+
+  .daily-row > * {
+    min-width: 0 !important;
+  }
+
+  .day-name {
+    overflow: hidden !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .daily-row .weather-symbol-sm {
+    --scale: 0.55 !important;
+  }
+
+  .rain-chance,
+  .low-temp {
+    font-size: 10px !important;
+  }
+
+  .high-temp {
+    font-size: 13px !important;
+  }
+
+  .range-track {
+    min-width: 42px !important;
+    height: 4px !important;
+  }
+
+  .weather-map {
+    min-height: 210px !important;
+    border-radius: 20px !important;
+  }
+
+  .details-grid {
+    gap: 9px !important;
+  }
+
+  .mini-card {
+    min-height: 126px !important;
+    padding: 12px !important;
+    border-radius: 22px !important;
+  }
+
+  .mini-label {
+    font-size: 11px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) 82px !important;
+    gap: 7px !important;
+  }
+
+  .mini-card strong {
+    font-size: 27px !important;
+  }
+
+  .mini-card p {
+    font-size: 11px !important;
+    line-height: 1.22 !important;
+  }
+
+  .uv-graphic,
+  .pressure-graphic,
+  .wind-graphic,
+  .sun-graphic,
+  .humidity-graphic,
+  .humidity-graphic-cuboid,
+  .precip-graphic,
+  .visibility-graphic,
+  .temp-graphic {
+    width: 82px !important;
+    min-width: 82px !important;
+    transform: scale(0.92) !important;
+    transform-origin: center right !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .weather-shell {
+    width: calc(100% - 10px) !important;
+  }
+
+  .brand-hero.top-panel {
+    padding: 8px 10px !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 52px !important;
+    height: 52px !important;
+    flex-basis: 52px !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 80px) !important;
+    font-size: clamp(28px, 8.2vw, 35px) !important;
+  }
+
+  .controls-panel {
+    padding: 9px !important;
+  }
+
+  .hero-section {
+    padding-top: 16px !important;
+  }
+
+  .hour-chip {
+    flex-basis: 68px !important;
+    min-width: 68px !important;
+    max-width: 68px !important;
+  }
+
+  .daily-row {
+    grid-template-columns: minmax(48px, 0.9fr) 25px 29px 26px minmax(45px, 1fr) 28px !important;
+    gap: 3px !important;
+    padding-inline: 4px !important;
+  }
+
+  .day-name,
+  .high-temp {
+    font-size: 12px !important;
+  }
+
+  .range-track {
+    min-width: 38px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) 72px !important;
+  }
+
+  .uv-graphic,
+  .pressure-graphic,
+  .wind-graphic,
+  .sun-graphic,
+  .humidity-graphic,
+  .humidity-graphic-cuboid,
+  .precip-graphic,
+  .visibility-graphic,
+  .temp-graphic {
+    width: 72px !important;
+    min-width: 72px !important;
+    transform: scale(0.86) !important;
+  }
+}
+
+/* v46: final phone compaction — restore brand, fit hourly/daily, make detail cards 2 columns */
+@media (max-width: 760px) {
+  .brand-hero.top-panel {
+    padding: 10px 12px !important;
+    border-radius: 22px !important;
+  }
+
+  .brand-hero .brand-block {
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 58px !important;
+    height: 58px !important;
+    flex: 0 0 58px !important;
+    border-radius: 18px !important;
+    background: #168bef !important;
+  }
+
+  .brand-hero .app-logo-sun,
+  .app-logo-sun {
+    display: block !important;
+    z-index: 2 !important;
+    left: 18% !important;
+    top: 17% !important;
+    width: 36% !important;
+    height: 36% !important;
+    opacity: 1 !important;
+  }
+
+  .brand-hero .app-logo-sun::before,
+  .app-logo-sun::before,
+  .brand-hero .app-logo-sun::after,
+  .app-logo-sun::after {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .brand-hero .app-logo-sun::before,
+  .app-logo-sun::before {
+    inset: -34% !important;
+  }
+
+  .brand-hero .app-logo-cloud-back,
+  .app-logo-cloud-back {
+    z-index: 3 !important;
+    left: 29% !important;
+    bottom: 34% !important;
+    width: 39% !important;
+    height: 20% !important;
+    opacity: 0.58 !important;
+  }
+
+  .brand-hero .app-logo-cloud-front,
+  .app-logo-cloud-front {
+    z-index: 4 !important;
+    left: 23% !important;
+    bottom: 18% !important;
+    width: 59% !important;
+    height: 32% !important;
+    opacity: 1 !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: flex !important;
+    margin: 0 0 2px !important;
+    gap: 7px !important;
+    max-width: calc(100vw - 98px) !important;
+    overflow: hidden !important;
+    font-size: 8px !important;
+    line-height: 1 !important;
+    letter-spacing: 0.18em !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 98px) !important;
+    font-size: clamp(28px, 8.5vw, 37px) !important;
+    line-height: 0.92 !important;
+  }
+
+  .hourly-strip {
+    gap: 6px !important;
+  }
+
+  .hour-chip {
+    flex: 0 0 58px !important;
+    min-width: 58px !important;
+    max-width: 58px !important;
+    min-height: 90px !important;
+    gap: 3px !important;
+    padding: 7px 4px !important;
+    border-radius: 16px !important;
+  }
+
+  .hour-chip .weather-symbol-sm {
+    --scale: 0.45 !important;
+    width: 34px !important;
+    height: 28px !important;
+  }
+
+  .hour-chip span,
+  .hour-chip small {
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .hour-chip b {
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+
+  .daily-row {
+    grid-template-columns: minmax(66px, 0.9fr) 34px 34px 30px minmax(66px, 1fr) 30px !important;
+    gap: 5px !important;
+    min-height: 50px !important;
+    padding: 0 6px !important;
+  }
+
+  .daily-row .weather-symbol-sm {
+    --scale: 0.64 !important;
+    width: 34px !important;
+    height: 34px !important;
+    justify-self: center !important;
+  }
+
+  .rain-chance {
+    min-width: 30px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    justify-self: center !important;
+  }
+
+  .low-temp,
+  .high-temp {
+    min-width: 26px !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .low-temp {
+    text-align: right !important;
+  }
+
+  .high-temp {
+    text-align: right !important;
+    font-size: 12px !important;
+  }
+
+  .range-track {
+    min-width: 58px !important;
+    height: 4px !important;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .mini-card {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 170px !important;
+    height: 170px !important;
+    padding: 11px !important;
+    border-radius: 22px !important;
+  }
+
+  .mini-label {
+    min-height: 20px !important;
+    gap: 5px !important;
+    font-size: 9px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.035em !important;
+  }
+
+  .mini-content {
+    display: block !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+
+  .mini-content > div:first-child {
+    position: relative !important;
+    z-index: 2 !important;
+    width: calc(100% - 62px) !important;
+    min-width: 0 !important;
+  }
+
+  .mini-card strong {
+    margin-top: 14px !important;
+    font-size: clamp(22px, 6.4vw, 29px) !important;
+    line-height: 0.98 !important;
+  }
+
+  .mini-card p {
+    max-height: 54px !important;
+    margin-top: 8px !important;
+    overflow: hidden !important;
+    font-size: 9.5px !important;
+    line-height: 1.18 !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: absolute !important;
+    right: 7px !important;
+    bottom: 8px !important;
+    width: 66px !important;
+    min-width: 66px !important;
+    height: 66px !important;
+    margin: 0 !important;
+    transform: none !important;
+    transform-origin: center !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 9px !important;
+    bottom: 24px !important;
+    width: 64px !important;
+    height: 22px !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 1px !important;
+    bottom: 3px !important;
+    width: 78px !important;
+    min-width: 78px !important;
+    height: 74px !important;
+  }
+
+  .humidity-cuboid {
+    width: 78px !important;
+    height: 74px !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 76px !important;
+    min-width: 76px !important;
+    height: 66px !important;
+    right: 2px !important;
+  }
+
+  .mini-content > .pressure-graphic {
+    width: 74px !important;
+    min-width: 74px !important;
+    height: 72px !important;
+    right: 2px !important;
+    bottom: 4px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 56px !important;
+    height: 56px !important;
+    flex-basis: 56px !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: flex !important;
+    max-width: calc(100vw - 94px) !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 94px) !important;
+    font-size: clamp(27px, 8.2vw, 34px) !important;
+  }
+
+  .hour-chip {
+    flex-basis: 54px !important;
+    min-width: 54px !important;
+    max-width: 54px !important;
+  }
+
+  .daily-row {
+    grid-template-columns: minmax(58px, 0.9fr) 31px 31px 27px minmax(50px, 1fr) 27px !important;
+    gap: 4px !important;
+  }
+
+  .daily-row .weather-symbol-sm {
+    --scale: 0.58 !important;
+    width: 31px !important;
+    height: 31px !important;
+  }
+
+  .range-track {
+    min-width: 50px !important;
+  }
+
+  .mini-card {
+    min-height: 164px !important;
+    height: 164px !important;
+    padding: 10px !important;
+  }
+
+  .mini-content > div:first-child {
+    width: calc(100% - 56px) !important;
+  }
+
+  .mini-card strong {
+    font-size: 23px !important;
+  }
+
+  .mini-card p {
+    font-size: 9px !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 58px !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 70px !important;
+    min-width: 70px !important;
+    height: 66px !important;
+  }
+
+  .humidity-cuboid {
+    width: 70px !important;
+    height: 66px !important;
+  }
+}
+
+/* v47: final requested mobile layout fixes */
+@media (max-width: 760px) {
+  .weather-shell {
+    width: min(100% - 12px, 430px) !important;
+  }
+
+  .brand-hero.top-panel {
+    min-height: 72px !important;
+    padding: 8px 10px !important;
+  }
+
+  .brand-hero .brand-block > div {
+    min-width: 0 !important;
+    display: block !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 52px !important;
+    height: 52px !important;
+    flex: 0 0 52px !important;
+    border-radius: 15px !important;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,0.42), transparent 34%),
+      linear-gradient(180deg, #a7f0ff 0%, #53bbef 50%, #2d78d0 100%) !important;
+    border-color: rgba(255,255,255,0.16) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.44),
+      inset 0 -10px 18px rgba(0, 70, 165, 0.22),
+      0 10px 20px rgba(0, 21, 65, 0.18) !important;
+  }
+
+  .brand-hero .app-logo-sun,
+  .app-logo-sun {
+    right: 6px !important;
+    left: auto !important;
+    top: 6px !important;
+    width: 19px !important;
+    height: 19px !important;
+    z-index: 1 !important;
+    background: radial-gradient(circle at 34% 32%, #fffde0 0 12%, #fff06a 37%, #ffc928 66%, #ffae17 100%) !important;
+    box-shadow: 0 0 12px rgba(255, 232, 79, 0.75) !important;
+  }
+
+  .brand-hero .app-logo-sun::before,
+  .app-logo-sun::before {
+    inset: -8px !important;
+    background: repeating-conic-gradient(from 7deg, rgba(255,241,118,0.82) 0deg 9deg, transparent 9deg 24deg) !important;
+    -webkit-mask: radial-gradient(circle, transparent 0 48%, #000 50% 72%, transparent 74%) !important;
+    mask: radial-gradient(circle, transparent 0 48%, #000 50% 72%, transparent 74%) !important;
+  }
+
+  .brand-hero .app-logo-sun::after,
+  .app-logo-sun::after {
+    inset: -4px !important;
+  }
+
+  .brand-hero .app-logo-cloud-back,
+  .app-logo-cloud-back {
+    left: 11px !important;
+    bottom: 16px !important;
+    width: 26px !important;
+    height: 14px !important;
+    z-index: 2 !important;
+    opacity: 0.68 !important;
+    filter: none !important;
+  }
+
+  .brand-hero .app-logo-cloud-front,
+  .app-logo-cloud-front {
+    left: 8px !important;
+    bottom: 10px !important;
+    width: 36px !important;
+    height: 18px !important;
+    z-index: 3 !important;
+    opacity: 0.98 !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: flex !important;
+    width: auto !important;
+    max-width: calc(100vw - 86px) !important;
+    margin: 0 0 3px !important;
+    gap: 6px !important;
+    overflow: hidden !important;
+    font-size: 7px !important;
+    line-height: 1 !important;
+    letter-spacing: 0.12em !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    display: block !important;
+    max-width: calc(100vw - 86px) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(26px, 8vw, 32px) !important;
+    line-height: 0.92 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .controls-panel {
+    padding: 8px !important;
+    border-radius: 20px !important;
+  }
+
+  .controls-panel .search-line {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+    align-items: stretch !important;
+  }
+
+  .controls-panel .city-field {
+    grid-column: 1 / -1 !important;
+  }
+
+  .controls-panel .primary-button {
+    grid-column: 1 / -1 !important;
+    min-height: 38px !important;
+  }
+
+  .controls-panel .location-button,
+  .favorite-menu-wrap,
+  .controls-panel .advanced-toggle {
+    grid-column: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .controls-panel .location-button,
+  .controls-panel .favorite-toggle,
+  .controls-panel .advanced-toggle {
+    min-height: 38px !important;
+    padding: 0 !important;
+    border-radius: 15px !important;
+    font-size: 0 !important;
+    gap: 0 !important;
+  }
+
+  .controls-panel .location-button .geo-pin-icon,
+  .controls-panel .favorite-toggle > span,
+  .controls-panel .advanced-toggle .settings-gear-icon {
+    margin: 0 !important;
+    font-size: 18px !important;
+    opacity: 0.9 !important;
+  }
+
+  .settings-gear-icon {
+    --gear-size: 18px !important;
+  }
+
+  .controls-panel .field span {
+    margin-bottom: 5px !important;
+    font-size: 9.5px !important;
+  }
+
+  .search-input-wrap input {
+    min-height: 38px !important;
+    font-size: 13px !important;
+  }
+
+  .month-calendar-card {
+    max-height: 92dvh !important;
+    overflow: auto !important;
+  }
+
+  .month-calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    gap: 4px !important;
+  }
+
+  .month-day-cell {
+    display: grid !important;
+    grid-template-rows: 14px 1fr 13px !important;
+    min-height: 58px !important;
+    padding: 4px 3px !important;
+    overflow: hidden !important;
+  }
+
+  .month-day-cell > b {
+    display: block !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+  }
+
+  .month-day-cell > .weather-symbol {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    --scale: 0.48 !important;
+    width: 28px !important;
+    height: 24px !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+
+  .month-day-cell span.month-day-temps {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    justify-content: space-between !important;
+    gap: 2px !important;
+    width: 100% !important;
+    font-size: 8px !important;
+    line-height: 1 !important;
+  }
+
+  .month-day-cell span.month-day-temps em,
+  .month-day-cell span.month-day-temps strong {
+    display: inline !important;
+    font-size: 8px !important;
+    line-height: 1 !important;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .mini-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 154px !important;
+    min-height: 154px !important;
+    padding: 10px !important;
+    border-radius: 21px !important;
+  }
+
+  .mini-label {
+    min-height: 18px !important;
+    font-size: 8.5px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .mini-content {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 54px !important;
+    grid-template-rows: auto 1fr !important;
+    column-gap: 6px !important;
+    row-gap: 5px !important;
+    align-items: center !important;
+    flex: 1 1 auto !important;
+  }
+
+  .mini-content > div:first-child {
+    display: contents !important;
+    width: auto !important;
+  }
+
+  .mini-card strong {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+    margin: 0 !important;
+    font-size: clamp(22px, 6vw, 27px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .mini-card p {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    align-self: start !important;
+    max-height: 44px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: 8.6px !important;
+    line-height: 1.18 !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-self: center !important;
+    width: 52px !important;
+    min-width: 52px !important;
+    height: 52px !important;
+    margin: 0 !important;
+    transform: none !important;
+    transform-origin: center !important;
+  }
+
+  .mini-content > .uv-graphic {
+    height: 21px !important;
+    align-self: center !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 52px !important;
+  }
+
+  .mini-content > .pressure-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 58px !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 54px !important;
+  }
+
+  .humidity-cuboid {
+    width: 58px !important;
+    height: 54px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-hero.top-panel .brand-title {
+    font-size: clamp(25px, 7.8vw, 30px) !important;
+  }
+
+  .mini-card {
+    height: 150px !important;
+    min-height: 150px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) 48px !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    width: 48px !important;
+    min-width: 48px !important;
+    height: 48px !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid,
+  .humidity-cuboid {
+    width: 52px !important;
+    min-width: 52px !important;
+    height: 50px !important;
+  }
+}
+
+/* v48: apply requested fixes on top of the working v4 build only */
+.app-logo-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after,
+.brand-hero .brand-app-icon.static-app-logo::before,
+.brand-hero .brand-app-icon.static-app-logo::after,
+.app-logo-sun,
+.app-logo-cloud,
+.app-logo-gloss {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+}
+
+@media (max-width: 760px) {
+  .brand-hero.top-panel {
+    min-height: 78px !important;
+    padding: 9px 11px !important;
+  }
+
+  .brand-hero .brand-block {
+    gap: 11px !important;
+    align-items: center !important;
+  }
+
+  .brand-hero .brand-block > div {
+    min-width: 0 !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 58px !important;
+    height: 58px !important;
+    flex: 0 0 58px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 17px !important;
+    background: transparent !important;
+    box-shadow: 0 10px 20px rgba(0, 21, 65, 0.20) !important;
+    overflow: hidden !important;
+  }
+
+  .brand-hero .brand-caption {
+    display: flex !important;
+    width: auto !important;
+    max-width: calc(100vw - 96px) !important;
+    margin: 0 0 3px !important;
+    gap: 7px !important;
+    overflow: hidden !important;
+    font-size: clamp(8px, 2.45vw, 10.5px) !important;
+    line-height: 1 !important;
+    letter-spacing: 0.13em !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    display: block !important;
+    max-width: calc(100vw - 96px) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(34px, 10.6vw, 45px) !important;
+    line-height: 0.88 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .controls-panel .coords-line {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 88px !important;
+    gap: 7px !important;
+    align-items: end !important;
+  }
+
+  .controls-panel .coords-line > .field:nth-of-type(1),
+  .controls-panel .coords-line > .field:nth-of-type(2) {
+    grid-column: auto !important;
+    min-width: 0 !important;
+  }
+
+  .controls-panel .coords-line > .field span {
+    margin-bottom: 5px !important;
+    font-size: 9px !important;
+    line-height: 1.05 !important;
+  }
+
+  .controls-panel .coords-line input {
+    min-height: 38px !important;
+    padding-inline: 10px !important;
+    border-radius: 15px !important;
+    font-size: 12px !important;
+  }
+
+  .controls-panel .coords-line > button[type="submit"] {
+    grid-column: auto !important;
+    width: 88px !important;
+    min-width: 0 !important;
+    min-height: 38px !important;
+    padding: 0 6px !important;
+    border-radius: 15px !important;
+    font-size: 11px !important;
+  }
+
+  .controls-panel .coords-line > .segmented,
+  .controls-panel .coords-line > .select-field {
+    grid-column: 1 / -1 !important;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .mini-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 158px !important;
+    min-height: 158px !important;
+    padding: 10px !important;
+    border-radius: 21px !important;
+  }
+
+  .mini-label {
+    flex: 0 0 auto !important;
+    min-height: 18px !important;
+    gap: 5px !important;
+    font-size: 8.5px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .mini-content {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 64px !important;
+    grid-template-rows: minmax(0, 1fr) auto !important;
+    column-gap: 7px !important;
+    row-gap: 5px !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    align-items: center !important;
+  }
+
+  .mini-content > div:first-child {
+    display: contents !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .mini-card strong {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(22px, 6.2vw, 28px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .mini-card p {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    align-self: end !important;
+    max-height: 44px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: rgba(255,255,255,0.86) !important;
+    font-size: 8.7px !important;
+    line-height: 1.18 !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: static !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-self: center !important;
+    margin: 0 !important;
+    transform: none !important;
+    transform-origin: center !important;
+    inset: auto !important;
+  }
+
+  .mini-content > .temp-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 100px !important;
+    zoom: 0.56 !important;
+  }
+
+  .mini-content > .uv-graphic {
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 20px !important;
+    zoom: 0.62 !important;
+  }
+
+  .mini-content > .wind-graphic {
+    width: 124px !important;
+    min-width: 124px !important;
+    height: 124px !important;
+    zoom: 0.45 !important;
+  }
+
+  .mini-content > .precip-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 88px !important;
+    zoom: 0.55 !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 82px !important;
+    zoom: 0.52 !important;
+  }
+
+  .mini-content > .pressure-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 104px !important;
+    zoom: 0.54 !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 74px !important;
+    zoom: 0.52 !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 140px !important;
+    min-width: 140px !important;
+    height: 130px !important;
+    zoom: 0.42 !important;
+  }
+
+  .humidity-cuboid {
+    width: 140px !important;
+    height: 130px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 56px !important;
+    height: 56px !important;
+    flex-basis: 56px !important;
+  }
+
+  .brand-hero .brand-caption {
+    font-size: clamp(8px, 2.35vw, 10px) !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    font-size: clamp(32px, 10vw, 42px) !important;
+  }
+
+  .controls-panel .coords-line {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 78px !important;
+    gap: 6px !important;
+  }
+
+  .controls-panel .coords-line > button[type="submit"] {
+    width: 78px !important;
+    font-size: 10px !important;
+  }
+
+  .mini-card {
+    height: 154px !important;
+    min-height: 154px !important;
+  }
+
+  .mini-content {
+    grid-template-columns: minmax(0, 1fr) 58px !important;
+  }
+}
+
+/* v49: exact cover icon, one-line extra settings, repaired detail graphics */
+@media (max-width: 760px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 64px !important;
+    height: 64px !important;
+    flex: 0 0 64px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: transparent !important;
+    box-shadow: 0 12px 22px rgba(0, 21, 65, 0.20) !important;
+    overflow: hidden !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo::before,
+  .brand-hero .brand-app-icon.static-app-logo::after,
+  .brand-app-icon.static-app-logo::before,
+  .brand-app-icon.static-app-logo::after,
+  .app-logo-sun,
+  .app-logo-cloud,
+  .app-logo-gloss {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+  }
+
+  .app-logo-image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit !important;
+    object-fit: cover !important;
+  }
+
+  .brand-hero .brand-caption {
+    max-width: calc(100vw - 106px) !important;
+    font-size: clamp(8.5px, 2.7vw, 11px) !important;
+    letter-spacing: 0.13em !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 106px) !important;
+    font-size: clamp(35px, 11vw, 47px) !important;
+  }
+
+  .controls-panel .coords-line {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.08fr) minmax(0, 0.76fr) !important;
+    gap: 7px !important;
+    align-items: end !important;
+  }
+
+  .controls-panel .coords-line > .field:nth-of-type(1),
+  .controls-panel .coords-line > .field:nth-of-type(2),
+  .controls-panel .coords-line > button[type="submit"] {
+    grid-column: auto !important;
+  }
+
+  .controls-panel .coords-line > .field:nth-of-type(1) {
+    grid-column: 1 !important;
+  }
+
+  .controls-panel .coords-line > .field:nth-of-type(2) {
+    grid-column: 2 !important;
+  }
+
+  .controls-panel .coords-line > button[type="submit"] {
+    grid-column: 3 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 38px !important;
+    padding: 0 6px !important;
+    border-radius: 15px !important;
+    font-size: 10.5px !important;
+  }
+
+  .controls-panel .coords-line input {
+    min-height: 38px !important;
+    padding-inline: 8px !important;
+    border-radius: 15px !important;
+    font-size: 11.5px !important;
+  }
+
+  .controls-panel .coords-line > .unit-toggle,
+  .controls-panel .coords-line > .select-field,
+  .controls-panel .coords-line > .language-toggle {
+    grid-row: 2 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .controls-panel .coords-line > .unit-toggle {
+    grid-column: 1 !important;
+  }
+
+  .controls-panel .coords-line > .select-field {
+    grid-column: 2 !important;
+  }
+
+  .controls-panel .coords-line > .language-toggle {
+    grid-column: 3 !important;
+  }
+
+  .controls-panel .coords-line .custom-select-button,
+  .controls-panel .coords-line .segmented {
+    min-height: 38px !important;
+    border-radius: 15px !important;
+    font-size: 10.5px !important;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .mini-card {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 166px !important;
+    min-height: 166px !important;
+    padding: 10px !important;
+    border-radius: 21px !important;
+    overflow: hidden !important;
+  }
+
+  .mini-label {
+    flex: 0 0 auto !important;
+    min-height: 18px !important;
+    font-size: 8.5px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .mini-content {
+    display: block !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+
+  .mini-content > div:first-child {
+    display: block !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .mini-card strong {
+    position: relative !important;
+    z-index: 2 !important;
+    display: block !important;
+    max-width: calc(100% - 66px) !important;
+    margin: 17px 0 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(22px, 6.2vw, 28px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .mini-card p {
+    position: absolute !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 9px !important;
+    z-index: 2 !important;
+    max-height: 46px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: rgba(255,255,255,0.86) !important;
+    font-size: 8.7px !important;
+    line-height: 1.18 !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: absolute !important;
+    z-index: 1 !important;
+    margin: 0 !important;
+    inset: auto !important;
+    transform-origin: center right !important;
+  }
+
+  .mini-content > .temp-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 100px !important;
+    right: 9px !important;
+    top: 39px !important;
+    transform: scale(0.58) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 20px !important;
+    right: 8px !important;
+    top: 55px !important;
+    transform: scale(0.62) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    width: 124px !important;
+    min-width: 124px !important;
+    height: 124px !important;
+    right: 2px !important;
+    top: 34px !important;
+    transform: scale(0.44) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 88px !important;
+    right: 7px !important;
+    top: 47px !important;
+    transform: scale(0.52) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 82px !important;
+    right: 2px !important;
+    top: 50px !important;
+    transform: scale(0.52) !important;
+  }
+
+  .mini-content > .pressure-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 104px !important;
+    right: 0 !important;
+    top: 62px !important;
+    transform: scale(0.50) !important;
+  }
+
+  .mini-card-pressure strong {
+    max-width: calc(100% - 26px) !important;
+    margin-top: 8px !important;
+    font-size: clamp(19px, 5.1vw, 24px) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 74px !important;
+    right: 1px !important;
+    top: 51px !important;
+    transform: scale(0.52) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 140px !important;
+    min-width: 140px !important;
+    height: 130px !important;
+    right: 1px !important;
+    top: 48px !important;
+    transform: scale(0.42) !important;
+  }
+
+  .humidity-cuboid {
+    width: 140px !important;
+    height: 130px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 60px !important;
+    height: 60px !important;
+    flex-basis: 60px !important;
+  }
+
+  .brand-hero .brand-caption {
+    max-width: calc(100vw - 102px) !important;
+    font-size: clamp(8px, 2.45vw, 10px) !important;
+  }
+
+  .brand-hero.top-panel .brand-title {
+    max-width: calc(100vw - 102px) !important;
+    font-size: clamp(33px, 10.4vw, 43px) !important;
+  }
+
+  .mini-card {
+    height: 162px !important;
+    min-height: 162px !important;
+  }
+
+  .mini-card p {
+    font-size: 8.4px !important;
+  }
+}
+
+/* v50: full cover icon everywhere, readable mobile cards and touch map polish */
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: 0 13px 26px rgba(0, 21, 65, 0.18) !important;
+  overflow: hidden !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: inherit !important;
+}
+
+@media (max-width: 760px) {
+  .mini-card {
+    height: 176px !important;
+    min-height: 176px !important;
+    padding: 11px !important;
+  }
+
+  .mini-label {
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  .mini-content {
+    display: block !important;
+    position: relative !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+
+  .mini-content > div:first-child {
+    display: block !important;
+    width: auto !important;
+  }
+
+  .mini-card strong {
+    position: relative !important;
+    z-index: 3 !important;
+    display: block !important;
+    max-width: calc(100% - 76px) !important;
+    margin: 28px 0 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(24px, 6.4vw, 30px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .mini-card p {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 2px !important;
+    z-index: 3 !important;
+    max-height: 48px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: rgba(255,255,255,0.88) !important;
+    font-size: 9px !important;
+    line-height: 1.18 !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: absolute !important;
+    z-index: 2 !important;
+    margin: 0 !important;
+    inset: auto !important;
+    transform-origin: center right !important;
+  }
+
+  .mini-content > .temp-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 100px !important;
+    right: 12px !important;
+    top: 21px !important;
+    transform: scale(0.76) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 20px !important;
+    right: 8px !important;
+    top: 45px !important;
+    transform: scale(0.82) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    width: 124px !important;
+    min-width: 124px !important;
+    height: 124px !important;
+    right: -4px !important;
+    top: 17px !important;
+    transform: scale(0.58) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 88px !important;
+    right: 9px !important;
+    top: 31px !important;
+    transform: scale(0.70) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 82px !important;
+    right: 4px !important;
+    top: 34px !important;
+    transform: scale(0.67) !important;
+  }
+
+  .mini-content > .pressure-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 104px !important;
+    right: 1px !important;
+    top: 48px !important;
+    transform: scale(0.62) !important;
+  }
+
+  .mini-card-pressure strong {
+    max-width: calc(100% - 18px) !important;
+    margin-top: 10px !important;
+    font-size: clamp(20px, 5.4vw, 25px) !important;
+  }
+
+  .mini-card-pressure .pressure-graphic .pressure-equal,
+  .mini-card-pressure .pressure-graphic b,
+  .mini-card-pressure .pressure-graphic em,
+  .mini-card-pressure .pressure-graphic small {
+    display: none !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 74px !important;
+    right: 2px !important;
+    top: 38px !important;
+    transform: scale(0.62) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 140px !important;
+    min-width: 140px !important;
+    height: 130px !important;
+    right: 2px !important;
+    top: 28px !important;
+    transform: scale(0.54) !important;
+  }
+
+  .humidity-cuboid {
+    width: 140px !important;
+    height: 130px !important;
+  }
+
+  .interactive-map-canvas {
+    touch-action: none !important;
+    overscroll-behavior: contain !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .map-modal-footer span:first-child {
+    display: none !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-card {
+    height: 170px !important;
+    min-height: 170px !important;
+  }
+
+  .mini-card strong {
+    font-size: clamp(23px, 6.2vw, 28px) !important;
+  }
+
+  .mini-card p {
+    font-size: 8.6px !important;
+  }
+
+  .mini-content > .temp-graphic { transform: scale(0.72) !important; right: 9px !important; }
+  .mini-content > .uv-graphic { transform: scale(0.76) !important; right: 5px !important; }
+  .mini-content > .wind-graphic { transform: scale(0.54) !important; right: -8px !important; }
+  .mini-content > .precip-graphic { transform: scale(0.64) !important; right: 5px !important; }
+  .mini-content > .sun-graphic { transform: scale(0.62) !important; right: 0 !important; }
+  .mini-content > .pressure-graphic { transform: scale(0.58) !important; right: -2px !important; }
+  .mini-content > .visibility-graphic { transform: scale(0.58) !important; right: -2px !important; }
+  .mini-content > .humidity-graphic-cuboid { transform: scale(0.50) !important; right: -1px !important; }
+}
+
+/* v51: no gray icon background, pinch map controls, fixed mobile detail cards */
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: 0 12px 22px rgba(0, 21, 65, 0.16) !important;
+  overflow: hidden !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: inherit !important;
+}
+
+@media (max-width: 760px) {
+  .map-zoom-controls {
+    display: none !important;
+  }
+
+  .interactive-map-canvas {
+    touch-action: none !important;
+    overscroll-behavior: contain !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .map-modal-footer span:first-child {
+    display: none !important;
+  }
+
+  .mini-card {
+    position: relative !important;
+    display: block !important;
+    height: 178px !important;
+    min-height: 178px !important;
+    padding: 11px !important;
+    border-radius: 21px !important;
+    overflow: hidden !important;
+  }
+
+  .mini-label {
+    position: absolute !important;
+    left: 11px !important;
+    right: 11px !important;
+    top: 10px !important;
+    z-index: 4 !important;
+    min-height: 18px !important;
+    font-size: 8.5px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .mini-content {
+    display: block !important;
+    position: static !important;
+    min-height: 0 !important;
+  }
+
+  .mini-content > div:first-child {
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  .mini-content > div:first-child > strong,
+  .mini-card strong {
+    position: absolute !important;
+    left: 11px !important;
+    top: 50px !important;
+    z-index: 4 !important;
+    display: block !important;
+    max-width: calc(100% - 88px) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(25px, 6.7vw, 31px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .mini-content > div:first-child > p,
+  .mini-card p {
+    position: absolute !important;
+    left: 11px !important;
+    right: 11px !important;
+    bottom: 10px !important;
+    z-index: 4 !important;
+    max-height: 48px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: rgba(255,255,255,0.88) !important;
+    font-size: 9px !important;
+    line-height: 1.18 !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: absolute !important;
+    z-index: 3 !important;
+    margin: 0 !important;
+    inset: auto !important;
+    transform-origin: center right !important;
+    pointer-events: none !important;
+  }
+
+  .mini-content > .temp-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 100px !important;
+    right: 10px !important;
+    top: 33px !important;
+    transform: scale(0.80) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 20px !important;
+    right: 8px !important;
+    top: 61px !important;
+    transform: scale(0.86) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    width: 124px !important;
+    min-width: 124px !important;
+    height: 124px !important;
+    right: -6px !important;
+    top: 23px !important;
+    transform: scale(0.62) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 88px !important;
+    right: 8px !important;
+    top: 43px !important;
+    transform: scale(0.76) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 82px !important;
+    right: 3px !important;
+    top: 45px !important;
+    transform: scale(0.72) !important;
+  }
+
+  .mini-content > .pressure-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 104px !important;
+    right: -1px !important;
+    top: 78px !important;
+    transform: scale(0.62) !important;
+  }
+
+  .mini-card-pressure .mini-content > div:first-child > strong,
+  .mini-card-pressure strong {
+    top: 40px !important;
+    max-width: calc(100% - 16px) !important;
+    font-size: clamp(20px, 5.4vw, 25px) !important;
+  }
+
+  .mini-card-pressure .pressure-graphic .pressure-equal,
+  .mini-card-pressure .pressure-graphic b,
+  .mini-card-pressure .pressure-graphic em,
+  .mini-card-pressure .pressure-graphic small {
+    display: none !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 74px !important;
+    right: 2px !important;
+    top: 49px !important;
+    transform: scale(0.66) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 140px !important;
+    min-width: 140px !important;
+    height: 130px !important;
+    right: 0 !important;
+    top: 35px !important;
+    transform: scale(0.60) !important;
+  }
+
+  .humidity-cuboid {
+    width: 140px !important;
+    height: 130px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-card {
+    height: 172px !important;
+    min-height: 172px !important;
+  }
+
+  .mini-content > div:first-child > strong,
+  .mini-card strong {
+    font-size: clamp(23px, 6.3vw, 29px) !important;
+  }
+
+  .mini-content > div:first-child > p,
+  .mini-card p {
+    font-size: 8.6px !important;
+  }
+
+  .mini-content > .temp-graphic { right: 8px !important; transform: scale(0.76) !important; }
+  .mini-content > .uv-graphic { right: 4px !important; transform: scale(0.78) !important; }
+  .mini-content > .wind-graphic { right: -10px !important; transform: scale(0.57) !important; }
+  .mini-content > .precip-graphic { right: 4px !important; transform: scale(0.70) !important; }
+  .mini-content > .sun-graphic { right: -2px !important; transform: scale(0.66) !important; }
+  .mini-content > .pressure-graphic { right: -4px !important; transform: scale(0.58) !important; }
+  .mini-content > .visibility-graphic { right: -4px !important; transform: scale(0.61) !important; }
+  .mini-content > .humidity-graphic-cuboid { right: -4px !important; transform: scale(0.54) !important; }
+}
+
+/* v52: clean icon edges, stronger mobile card graphics and stable text layout */
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+@media (max-width: 760px) {
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .mini-card {
+    position: relative !important;
+    display: block !important;
+    height: 178px !important;
+    min-height: 178px !important;
+    padding: 11px !important;
+    overflow: hidden !important;
+  }
+
+  .mini-label {
+    position: absolute !important;
+    left: 11px !important;
+    right: 10px !important;
+    top: 10px !important;
+    z-index: 5 !important;
+    min-height: 18px !important;
+    margin: 0 !important;
+    font-size: 8.7px !important;
+    line-height: 1.08 !important;
+  }
+
+  .mini-content,
+  .mini-content > div:first-child {
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+  }
+
+  .mini-content > div:first-child > strong,
+  .mini-card strong {
+    position: absolute !important;
+    left: 12px !important;
+    top: 47px !important;
+    z-index: 5 !important;
+    display: block !important;
+    max-width: calc(100% - 98px) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: clamp(25px, 6.6vw, 31px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .mini-content > div:first-child > p,
+  .mini-card p {
+    position: absolute !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 11px !important;
+    z-index: 5 !important;
+    max-height: 42px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    font-size: 8.8px !important;
+    line-height: 1.18 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  .mini-content > .uv-graphic,
+  .mini-content > .pressure-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .humidity-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .precip-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .temp-graphic {
+    position: absolute !important;
+    z-index: 4 !important;
+    margin: 0 !important;
+    inset: auto !important;
+    transform-origin: center right !important;
+    pointer-events: none !important;
+  }
+
+  .mini-content > .temp-graphic {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 100px !important;
+    right: 24px !important;
+    top: 29px !important;
+    transform: scale(1.02) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    width: 96px !important;
+    min-width: 96px !important;
+    height: 20px !important;
+    right: 16px !important;
+    top: 58px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    width: 124px !important;
+    min-width: 124px !important;
+    height: 124px !important;
+    right: 2px !important;
+    top: 15px !important;
+    transform: scale(0.86) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 88px !important;
+    right: 18px !important;
+    top: 36px !important;
+    transform: scale(0.98) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 82px !important;
+    right: 8px !important;
+    top: 39px !important;
+    transform: scale(0.92) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    width: 122px !important;
+    min-width: 122px !important;
+    height: 74px !important;
+    right: 10px !important;
+    top: 42px !important;
+    transform: scale(0.92) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    width: 140px !important;
+    min-width: 140px !important;
+    height: 130px !important;
+    right: 2px !important;
+    top: 24px !important;
+    transform: scale(0.82) !important;
+  }
+
+  .humidity-cuboid {
+    width: 140px !important;
+    height: 130px !important;
+  }
+
+  .mini-card-pressure .mini-content > div:first-child > strong,
+  .mini-card-pressure strong {
+    top: 42px !important;
+    max-width: calc(100% - 18px) !important;
+    font-size: clamp(20px, 5.25vw, 25px) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    width: 104px !important;
+    min-width: 104px !important;
+    height: 104px !important;
+    right: 8px !important;
+    top: 76px !important;
+    transform: scale(0.78) !important;
+  }
+
+  .mini-card-pressure .pressure-graphic .pressure-equal,
+  .mini-card-pressure .pressure-graphic b,
+  .mini-card-pressure .pressure-graphic em,
+  .mini-card-pressure .pressure-graphic small {
+    display: none !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-card {
+    height: 174px !important;
+    min-height: 174px !important;
+  }
+
+  .mini-content > div:first-child > strong,
+  .mini-card strong {
+    top: 46px !important;
+    max-width: calc(100% - 94px) !important;
+    font-size: clamp(23px, 6.15vw, 29px) !important;
+  }
+
+  .mini-content > div:first-child > p,
+  .mini-card p {
+    font-size: 8.5px !important;
+  }
+
+  .mini-content > .temp-graphic { right: 22px !important; top: 28px !important; transform: scale(0.96) !important; }
+  .mini-content > .uv-graphic { right: 13px !important; top: 58px !important; transform: scale(1.14) !important; }
+  .mini-content > .wind-graphic { right: -2px !important; top: 18px !important; transform: scale(0.78) !important; }
+  .mini-content > .precip-graphic { right: 15px !important; top: 37px !important; transform: scale(0.90) !important; }
+  .mini-content > .sun-graphic { right: 5px !important; top: 40px !important; transform: scale(0.84) !important; }
+  .mini-content > .visibility-graphic { right: 8px !important; top: 43px !important; transform: scale(0.84) !important; }
+  .mini-content > .humidity-graphic-cuboid { right: -2px !important; top: 27px !important; transform: scale(0.74) !important; }
+  .mini-card-pressure .mini-content > .pressure-graphic { right: 5px !important; top: 78px !important; transform: scale(0.70) !important; }
+}
+
+/* v53: mobile graphics alignment, icon-driven backgrounds, compact mobile dropdowns */
+.icon-sunny .sun {
+  display: block !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 58% !important;
+  height: 58% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.icon-sunny .cloud,
+.icon-sunny .cloud-back,
+.icon-sunny .cloud-front,
+.icon-sunny .rain,
+.icon-sunny .bolt,
+.icon-sunny .flake,
+.icon-sunny .fog {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .controls-panel,
+  .search-line,
+  .advanced-grid {
+    overflow: visible !important;
+  }
+
+  .city-field,
+  .custom-select,
+  .custom-select-field,
+  .favorite-menu-wrap {
+    position: relative !important;
+  }
+
+  .city-suggestions,
+  .favorites-popover,
+  .custom-select-menu {
+    position: absolute !important;
+    inset: auto auto auto auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: calc(100% + 7px) !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    max-height: min(252px, 48vh) !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    transform: none !important;
+    z-index: 120 !important;
+  }
+
+  .city-suggestions > div,
+  .favorite-list,
+  .custom-select-menu {
+    max-height: 204px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+  }
+
+  .city-suggestions p,
+  .favorites-popover p {
+    margin: 0 0 8px !important;
+    font-size: 10px !important;
+  }
+
+  .city-suggestion,
+  .favorite-place,
+  .custom-select-menu button {
+    min-height: 42px !important;
+    padding: 9px 10px !important;
+    border-radius: 13px !important;
+    font-size: 11px !important;
+  }
+
+  .favorites-popover {
+    top: calc(100% + 8px) !important;
+  }
+
+  .favorites-close-button {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .save-favorite-button {
+    min-height: 38px !important;
+    padding: 9px 10px !important;
+  }
+
+  .custom-select-menu {
+    top: calc(100% + 6px) !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 34px !important;
+    top: 36px !important;
+    transform: scale(1.05) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 28px !important;
+    top: 68px !important;
+    transform: scale(1.46) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 14px !important;
+    top: 28px !important;
+    transform: scale(1.02) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 30px !important;
+    top: 48px !important;
+    transform: scale(1.05) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 20px !important;
+    top: 50px !important;
+    transform: scale(0.98) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 24px !important;
+    top: 54px !important;
+    transform: scale(0.98) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 12px !important;
+    top: 38px !important;
+    transform: scale(0.88) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 10px !important;
+    top: 72px !important;
+    transform: scale(0.82) !important;
+  }
+
+  .mini-card-pressure .pressure-graphic .pressure-equal,
+  .mini-card-pressure .pressure-graphic b,
+  .mini-card-pressure .pressure-graphic em,
+  .mini-card-pressure .pressure-graphic small {
+    display: block !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-content > .temp-graphic { right: 30px !important; top: 36px !important; transform: scale(1.00) !important; }
+  .mini-content > .uv-graphic { right: 24px !important; top: 68px !important; transform: scale(1.32) !important; }
+  .mini-content > .wind-graphic { right: 10px !important; top: 30px !important; transform: scale(0.92) !important; }
+  .mini-content > .precip-graphic { right: 25px !important; top: 49px !important; transform: scale(0.96) !important; }
+  .mini-content > .sun-graphic { right: 16px !important; top: 51px !important; transform: scale(0.90) !important; }
+  .mini-content > .visibility-graphic { right: 20px !important; top: 55px !important; transform: scale(0.90) !important; }
+  .mini-content > .humidity-graphic-cuboid { right: 7px !important; top: 40px !important; transform: scale(0.80) !important; }
+  .mini-card-pressure .mini-content > .pressure-graphic { right: 7px !important; top: 75px !important; transform: scale(0.74) !important; }
+}
+
+
+/* v54: final mobile polish - darker API, no input zoom, wider favorites, larger card graphics */
+.brand-caption .caption-api,
+.brand-hero .brand-caption .caption-api {
+  color: #a477f4 !important;
+  text-shadow: 0 0 16px rgba(164, 119, 244, 0.42) !important;
+}
+
+.search-input-wrap,
+.search-input-wrap input,
+.city-field,
+.city-field:hover,
+.city-field:focus-within,
+.controls-panel,
+.controls-panel:hover,
+.controls-panel:focus-within {
+  transform: none !important;
+  scale: 1 !important;
+}
+
+input,
+textarea,
+select,
+button {
+  -webkit-text-size-adjust: 100%;
+}
+
+.city-field input,
+.search-input-wrap input,
+.controls-panel input {
+  font-size: 16px !important;
+}
+
+.favorite-menu-wrap .favorites-popover {
+  width: min(380px, calc(100vw - 22px)) !important;
+  min-width: min(330px, calc(100vw - 22px)) !important;
+}
+
+.favorite-menu-wrap .save-favorite-button,
+.favorite-menu-wrap .favorites-popover p,
+.favorite-menu-wrap .favorite-place strong,
+.favorite-menu-wrap .favorite-place small,
+.favorite-menu-wrap .favorite-place em {
+  white-space: nowrap !important;
+}
+
+.favorite-menu-wrap .favorite-place span {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.favorite-menu-wrap .favorite-place strong,
+.favorite-menu-wrap .favorite-place small,
+.favorite-menu-wrap .favorite-place em {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 760px) {
+  .favorite-menu-wrap .favorites-popover {
+    left: 50% !important;
+    right: auto !important;
+    top: calc(100% + 8px) !important;
+    transform: translateX(-50%) !important;
+    width: min(336px, calc(100vw - 18px)) !important;
+    min-width: min(292px, calc(100vw - 18px)) !important;
+    max-height: min(260px, 48vh) !important;
+  }
+
+  .favorite-menu-wrap .save-favorite-button {
+    justify-content: center !important;
+    font-size: 11px !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  .city-field input,
+  .search-input-wrap input,
+  .controls-panel input,
+  .custom-select-button {
+    font-size: 16px !important;
+    transform: none !important;
+  }
+
+  .mini-content > .temp-graphic,
+  .mini-content > .uv-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .precip-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .humidity-graphic-cuboid,
+  .mini-content > .pressure-graphic {
+    transform-origin: center center !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 5px !important;
+    top: 50px !important;
+    transform: scale(1.50) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 4px !important;
+    top: 80px !important;
+    transform: scale(1.95) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: -22px !important;
+    top: 48px !important;
+    transform: scale(1.30) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 7px !important;
+    top: 65px !important;
+    transform: scale(1.52) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: -10px !important;
+    top: 68px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 3px !important;
+    top: 78px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: -16px !important;
+    top: 65px !important;
+    transform: scale(1.20) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 4px !important;
+    top: 90px !important;
+    transform: scale(1.08) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-content > .temp-graphic { right: 8px !important; top: 50px !important; transform: scale(1.38) !important; }
+  .mini-content > .uv-graphic { right: 7px !important; top: 80px !important; transform: scale(1.72) !important; }
+  .mini-content > .wind-graphic { right: -22px !important; top: 50px !important; transform: scale(1.16) !important; }
+  .mini-content > .precip-graphic { right: 8px !important; top: 67px !important; transform: scale(1.34) !important; }
+  .mini-content > .sun-graphic { right: -6px !important; top: 70px !important; transform: scale(1.25) !important; }
+  .mini-content > .visibility-graphic { right: 5px !important; top: 78px !important; transform: scale(1.24) !important; }
+  .mini-content > .humidity-graphic-cuboid { right: -14px !important; top: 68px !important; transform: scale(1.06) !important; }
+  .mini-card-pressure .mini-content > .pressure-graphic { right: 4px !important; top: 92px !important; transform: scale(0.98) !important; }
+}
+
+/* v55: final icon and mobile card polish */
+.brand-caption .caption-api,
+.brand-hero .brand-caption .caption-api {
+  color: #8f5ae6 !important;
+  text-shadow: 0 0 16px rgba(143, 90, 230, 0.52) !important;
+}
+
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo {
+  overflow: hidden !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  object-fit: cover !important;
+  transform: scale(1.035) !important;
+  transform-origin: center center !important;
+}
+
+.favorites-close-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+}
+
+.save-favorite-button {
+  position: relative !important;
+}
+
+.favorite-place i {
+  top: 58% !important;
+}
+
+@media (max-width: 760px) {
+  .mini-content > .temp-graphic {
+    right: 20px !important;
+    top: 62px !important;
+    transform: scale(1.78) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 14px !important;
+    top: 74px !important;
+    transform: scale(2.05) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 4px !important;
+    top: 58px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 18px !important;
+    top: 64px !important;
+    transform: scale(1.55) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 10px !important;
+    top: 70px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 12px !important;
+    top: 74px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 2px !important;
+    top: 64px !important;
+    transform: scale(1.18) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 18px !important;
+    top: 84px !important;
+    transform: scale(1.04) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-content > .temp-graphic {
+    right: 18px !important;
+    top: 60px !important;
+    transform: scale(1.62) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 14px !important;
+    top: 74px !important;
+    transform: scale(1.85) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 2px !important;
+    top: 58px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 16px !important;
+    top: 64px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 10px !important;
+    top: 72px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 12px !important;
+    top: 76px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 2px !important;
+    top: 66px !important;
+    transform: scale(1.08) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 16px !important;
+    top: 88px !important;
+    transform: scale(0.96) !important;
+  }
+}
+
+
+/* v56: requested favicon, favorites and card graphic spacing polish */
+.favorites-close-button {
+  display: none !important;
+}
+
+.favorite-menu-wrap .favorites-popover,
+.favorites-popover {
+  padding-top: 12px !important;
+}
+
+.favorite-place i {
+  top: 66% !important;
+  transform: translateY(-50%) !important;
+}
+
+@media (max-width: 760px) {
+  .mini-content > .temp-graphic {
+    right: 34px !important;
+    top: 62px !important;
+    transform: scale(1.78) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 30px !important;
+    top: 74px !important;
+    transform: scale(2.05) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 20px !important;
+    top: 58px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 34px !important;
+    top: 64px !important;
+    transform: scale(1.55) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 28px !important;
+    top: 70px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 30px !important;
+    top: 74px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 24px !important;
+    top: 64px !important;
+    transform: scale(1.18) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 28px !important;
+    top: 106px !important;
+    transform: scale(1.04) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-content > .temp-graphic {
+    right: 34px !important;
+    top: 60px !important;
+    transform: scale(1.62) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 30px !important;
+    top: 74px !important;
+    transform: scale(1.85) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 18px !important;
+    top: 58px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 32px !important;
+    top: 64px !important;
+    transform: scale(1.42) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 28px !important;
+    top: 72px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 30px !important;
+    top: 76px !important;
+    transform: scale(1.28) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 26px !important;
+    top: 66px !important;
+    transform: scale(1.08) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 30px !important;
+    top: 108px !important;
+    transform: scale(0.96) !important;
+  }
+}
+
+/* v57: icon, theme button palette, favorites desktop/mobile and mobile card graphic alignment */
+.theme-clear-day,
+.theme-partly {
+  --accent: #ffe479 !important;
+  --accent-2: #8fe9ff !important;
+}
+
+.theme-cloudy,
+.theme-fog {
+  --accent: #d7defb !important;
+  --accent-2: #a9e5ff !important;
+}
+
+.theme-rain {
+  --accent: #9fd4ff !important;
+  --accent-2: #86ead9 !important;
+}
+
+.theme-thunder {
+  --accent: #9eacff !important;
+  --accent-2: #72d9ff !important;
+}
+
+.theme-clear-night,
+.theme-cloudy-night {
+  --accent: #b9c7ff !important;
+  --accent-2: #8fdcff !important;
+}
+
+.theme-snow {
+  --accent: #edf8ff !important;
+  --accent-2: #9fdcff !important;
+}
+
+.favorites-close-button {
+  display: flex !important;
+}
+
+.favorite-menu-wrap .favorites-popover,
+.favorites-popover {
+  padding-top: 42px !important;
+}
+
+.favorite-place i {
+  top: 60% !important;
+  transform: translateY(-50%) !important;
+}
+
+@media (max-width: 760px) {
+  .favorites-close-button {
+    display: none !important;
+  }
+
+  .favorite-menu-wrap .favorites-popover,
+  .favorites-popover {
+    padding-top: 12px !important;
+  }
+
+  .favorite-place i {
+    top: 74% !important;
+  }
+
+  .mini-content > .temp-graphic,
+  .mini-content > .uv-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .precip-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .humidity-graphic-cuboid {
+    bottom: auto !important;
+    top: 50% !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 38px !important;
+    transform: translateY(-50%) scale(1.78) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 36px !important;
+    transform: translateY(-50%) scale(1.36) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 24px !important;
+    transform: translateY(-50%) scale(1.42) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 38px !important;
+    transform: translateY(-50%) scale(1.55) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 30px !important;
+    transform: translateY(-50%) scale(1.42) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 32px !important;
+    transform: translateY(-50%) scale(1.42) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 26px !important;
+    transform: translateY(-50%) scale(1.77) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 36px !important;
+    bottom: auto !important;
+    top: 62% !important;
+    transform: translateY(-50%) scale(1.04) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .favorite-place i {
+    top: 76% !important;
+  }
+
+  .mini-content > .temp-graphic,
+  .mini-content > .uv-graphic,
+  .mini-content > .wind-graphic,
+  .mini-content > .precip-graphic,
+  .mini-content > .sun-graphic,
+  .mini-content > .visibility-graphic,
+  .mini-content > .humidity-graphic-cuboid {
+    bottom: auto !important;
+    top: 50% !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 36px !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 34px !important;
+    transform: translateY(-50%) scale(1.23) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 22px !important;
+    transform: translateY(-50%) scale(1.28) !important;
+  }
+
+  .mini-content > .precip-graphic {
+    right: 36px !important;
+    transform: translateY(-50%) scale(1.42) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 28px !important;
+    transform: translateY(-50%) scale(1.28) !important;
+  }
+
+  .mini-content > .visibility-graphic {
+    right: 30px !important;
+    transform: translateY(-50%) scale(1.28) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 24px !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 34px !important;
+    bottom: auto !important;
+    top: 64% !important;
+    transform: translateY(-50%) scale(0.96) !important;
+  }
+}
+
+/* v58: final icon cleanup, stable mobile background and detail card sizing */
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.app-logo-image,
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after,
+.brand-hero .brand-app-icon.static-app-logo::before,
+.brand-hero .brand-app-icon.static-app-logo::after,
+.app-logo-gloss,
+.brand-hero .app-logo-gloss {
+  display: none !important;
+  content: none !important;
+}
+
+.mini-card p {
+  font-size: 12px !important;
+  line-height: 1.28 !important;
+}
+
+@media (max-width: 760px) {
+  html,
+  body {
+    background-attachment: scroll !important;
+    overscroll-behavior-y: none;
+  }
+
+  .weather-app {
+    background-attachment: scroll !important;
+    background-position: center top !important;
+  }
+
+  .weather-app::before,
+  .weather-app::after,
+  .sky-layer {
+    position: fixed !important;
+    inset: 0 !important;
+    height: 100lvh !important;
+    min-height: 100lvh !important;
+    transform: none !important;
+    will-change: auto !important;
+    backface-visibility: hidden;
+  }
+
+  .brand-app-icon.static-app-logo,
+  .brand-hero .brand-app-icon.static-app-logo,
+  .theme-clear-night .brand-app-icon.static-app-logo,
+  .theme-cloudy-night .brand-app-icon.static-app-logo,
+  .theme-thunder .brand-app-icon.static-app-logo,
+  .theme-rain .brand-app-icon.static-app-logo,
+  .theme-snow .brand-app-icon.static-app-logo,
+  .theme-fog .brand-app-icon.static-app-logo {
+    width: 54px !important;
+    height: 54px !important;
+    flex: 0 0 54px !important;
+  }
+
+  .mini-card p {
+    font-size: 11px !important;
+    line-height: 1.26 !important;
+    max-height: 64px !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 40px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 30px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.56) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 36px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.56) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 40px !important;
+    top: 64% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.14) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 32px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.90) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-app-icon.static-app-logo,
+  .brand-hero .brand-app-icon.static-app-logo,
+  .theme-clear-night .brand-app-icon.static-app-logo,
+  .theme-cloudy-night .brand-app-icon.static-app-logo,
+  .theme-thunder .brand-app-icon.static-app-logo,
+  .theme-rain .brand-app-icon.static-app-logo,
+  .theme-snow .brand-app-icon.static-app-logo,
+  .theme-fog .brand-app-icon.static-app-logo {
+    width: 52px !important;
+    height: 52px !important;
+    flex: 0 0 52px !important;
+  }
+
+  .mini-card p {
+    font-size: 10.6px !important;
+    line-height: 1.24 !important;
+    max-height: 68px !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 38px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.48) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 28px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.42) !important;
+  }
+
+  .mini-content > .sun-graphic {
+    right: 34px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.42) !important;
+  }
+
+  .mini-card-pressure .mini-content > .pressure-graphic {
+    right: 38px !important;
+    top: 65% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.06) !important;
+  }
+
+  .mini-content > .humidity-graphic-cuboid {
+    right: 30px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) scale(1.74) !important;
+  }
+}
+
+/* v17: clean opaque icons, locked mobile background, clean month/date headers */
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  width: 64px !important;
+  height: 64px !important;
+  flex: 0 0 64px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  overflow: visible !important;
+}
+
+.app-logo-image,
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after,
+.brand-hero .brand-app-icon.static-app-logo::before,
+.brand-hero .brand-app-icon.static-app-logo::after,
+.app-logo-gloss,
+.brand-hero .app-logo-gloss {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.month-calendar-header,
+.date-picker-head {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.month-close-button,
+.date-picker-close,
+.date-picker-head button,
+.date-picker-nav {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.month-close-button:hover,
+.date-picker-close:hover,
+.date-picker-head button:hover,
+.date-picker-nav:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+@media (max-width: 760px) {
+  html,
+  body,
+  #root {
+    height: 100% !important;
+    min-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .weather-app {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    background-attachment: scroll !important;
+    background-size: 100vw 100dvh !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .weather-app::before,
+  .weather-app::after,
+  .sky-layer {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    transform: translate3d(0, 0, 0) !important;
+    background-attachment: scroll !important;
+    will-change: auto !important;
+  }
+
+  .brand-app-icon.static-app-logo,
+  .brand-hero .brand-app-icon.static-app-logo,
+  .theme-clear-night .brand-app-icon.static-app-logo,
+  .theme-cloudy-night .brand-app-icon.static-app-logo,
+  .theme-thunder .brand-app-icon.static-app-logo,
+  .theme-rain .brand-app-icon.static-app-logo,
+  .theme-snow .brand-app-icon.static-app-logo,
+  .theme-fog .brand-app-icon.static-app-logo {
+    width: 50px !important;
+    height: 50px !important;
+    flex: 0 0 50px !important;
+  }
+
+  .month-calendar-header {
+    position: static !important;
+    padding: 2px 6px 12px !important;
+  }
+}
+
+
+/* v20: restore avatar and favicon from source project archive */
+.brand-app-icon.static-app-logo {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(135, 216, 255, 0.98) 0%, rgba(57, 146, 232, 0.96) 54%, rgba(33, 91, 179, 0.98) 100%);
+  border: 1px solid rgba(255,255,255,0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.56),
+    inset 0 -12px 24px rgba(0, 58, 145, 0.28),
+    0 15px 31px rgba(0,0,0,0.17);
+}
+
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.brand-app-icon.static-app-logo::before {
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.30), transparent 44%),
+    radial-gradient(ellipse at 50% 112%, rgba(17, 66, 162, 0.58), transparent 50%);
+}
+
+.brand-app-icon.static-app-logo::after {
+  inset: 6px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.app-logo-sun {
+  position: absolute;
+  right: 9px;
+  top: 8px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fffbd5 0 12%, #ffe876 43%, #ffbd30 100%);
+  box-shadow: 0 0 14px rgba(255, 222, 95, 0.72);
+}
+
+.app-logo-cloud {
+  position: absolute;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 25% 12%, rgba(255,255,255,0.98) 0 22%, transparent 23%),
+    radial-gradient(circle at 55% -8%, rgba(255,255,255,0.96) 0 34%, transparent 35%),
+    radial-gradient(circle at 76% 16%, rgba(238,244,255,0.96) 0 25%, transparent 26%),
+    linear-gradient(180deg, #ffffff 0%, #ecf3ff 48%, #cbd8ef 100%);
+  box-shadow: inset 0 3px 1px rgba(255,255,255,0.62), inset 0 -8px 14px rgba(112,133,178,0.16);
+}
+
+.app-logo-cloud-back {
+  left: 12px;
+  bottom: 19px;
+  width: 32px;
+  height: 17px;
+  opacity: 0.78;
+  filter: blur(0.25px);
+}
+
+.app-logo-cloud-front {
+  left: 8px;
+  bottom: 12px;
+  width: 42px;
+  height: 23px;
+}
+
+.app-logo-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 28% 10%, rgba(255,255,255,0.34), transparent 42%);
+  pointer-events: none;
+}
+
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  background:
+    linear-gradient(180deg, rgba(135, 216, 255, 0.98) 0%, rgba(57, 146, 232, 0.96) 54%, rgba(33, 91, 179, 0.98) 100%);
+}
+
+
+/* v12 fixes: brand fidelity, clean month modal, dropdown overlay, hero degree spacing */
+.brand-hero .brand-app-icon.static-app-logo {
+  width: 118px;
+  height: 118px;
+  flex-basis: 118px;
+  border-radius: 31px;
+  border: 1.35px solid rgba(211, 237, 255, 0.62);
+  background:
+    radial-gradient(circle at 19% 14%, rgba(255,255,255,0.46), transparent 34%),
+    linear-gradient(180deg, #9ce7ff 0%, #56b0f1 38%, #156ed8 71%, #0f56bc 100%);
+  box-shadow:
+    inset 0 1.8px 0 rgba(255,255,255,0.58),
+    inset 0 -25px 36px rgba(2, 48, 136, 0.42),
+    0 18px 28px rgba(1, 16, 53, 0.26),
+    0 0 0 1px rgba(92, 185, 255, 0.14);
+}
+
+.brand-hero .brand-app-icon.static-app-logo::before {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.04) 44%, transparent 57%),
+    radial-gradient(ellipse at 46% 108%, rgba(20, 57, 149, 0.72), transparent 54%);
+}
+
+.brand-hero .brand-app-icon.static-app-logo::after {
+  inset: 8px;
+  border-radius: 25px;
+  border-color: rgba(255,255,255,0.16);
+}
+
+.brand-hero .app-logo-sun {
+  right: 19px;
+  top: 18px;
+  width: 38px;
+  height: 38px;
+  background: radial-gradient(circle at 34% 34%, #fff8cf 0 12%, #ffe866 35%, #ffc940 64%, #ffb428 100%);
+  box-shadow: 0 0 16px rgba(255, 222, 84, 0.74), 0 0 26px rgba(255, 193, 49, 0.34);
+}
+
+.brand-hero .app-logo-sun::before {
+  inset: -15px;
+  background: repeating-conic-gradient(from 5deg, rgba(255,219,75,0.84) 0deg 8deg, transparent 8deg 22deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 43%, #000 45% 72%, transparent 74%);
+  mask: radial-gradient(circle, transparent 0 43%, #000 45% 72%, transparent 74%);
+}
+
+.brand-hero .app-logo-sun::after {
+  inset: -8px;
+  background: radial-gradient(circle, rgba(255,225,97,0.28), transparent 70%);
+}
+
+.brand-hero .app-logo-cloud-back {
+  left: 29px;
+  bottom: 41px;
+  width: 62px;
+  height: 29px;
+  opacity: 0.56;
+}
+
+.brand-hero .app-logo-cloud-front {
+  left: 18px;
+  bottom: 25px;
+  width: 80px;
+  height: 41px;
+  opacity: 0.98;
+}
+
+.brand-hero .app-logo-cloud {
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 24% 30%, rgba(255,255,255,0.98) 0 16%, transparent 17%),
+    radial-gradient(circle at 39% 15%, rgba(255,255,255,0.98) 0 24%, transparent 25%),
+    radial-gradient(circle at 60% 3%, rgba(255,255,255,0.98) 0 31%, transparent 32%),
+    radial-gradient(circle at 82% 29%, rgba(244,248,255,0.97) 0 20%, transparent 21%),
+    linear-gradient(180deg, #ffffff 0%, #eef3fd 52%, #cad7ec 100%);
+  box-shadow:
+    inset 0 2px 1px rgba(255,255,255,0.72),
+    inset 0 -10px 14px rgba(129, 149, 189, 0.17),
+    0 1px 1px rgba(255,255,255,0.18);
+}
+
+.brand-hero .brand-caption {
+  margin: 0 0 10px;
+  gap: 16px;
+  font-family: "Montserrat", Inter, system-ui, sans-serif;
+  font-size: clamp(14px, 1.25vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+.brand-hero .brand-caption .caption-open,
+.brand-hero .brand-caption .caption-api {
+  text-shadow: 0 0 10px rgba(160, 228, 255, 0.20);
+}
+
+.brand-hero .brand-caption .caption-open {
+  color: #63edf1;
+}
+
+.brand-hero .brand-caption .caption-api {
+  color: #c6a8ff;
+}
+
+.brand-hero.top-panel .brand-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(82px, 7vw, 118px);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: 0.005em;
+}
+
+.brand-hero .brand-title span {
+  background: linear-gradient(180deg, #ffffff 0%, #edf6ff 28%, #d6e5fa 56%, #9fb7eb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.98),
+    0 0 12px rgba(173, 220, 255, 0.48),
+    0 10px 18px rgba(1, 9, 41, 0.28);
+  filter: none;
+}
+
+.month-forecast-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.07));
+  font-family: "Montserrat", Inter, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.88);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.13);
+}
+
+.month-forecast-button .mini-calendar-icon {
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+}
+
+.month-calendar-card {
+  padding: 22px 18px 18px;
+}
+
+.month-calendar-controls {
+  gap: 16px;
+}
+
+.month-date-pill,
+.month-days-display {
+  position: relative;
+  min-height: 48px;
+}
+
+.month-date-pill {
+  justify-content: center;
+  gap: 12px;
+  padding: 0 18px;
+}
+
+.month-date-pill > span:last-of-type {
+  display: inline-block;
+  min-width: 98px;
+  text-align: center;
+}
+
+.native-date-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.month-days-display {
+  gap: 8px;
+  justify-content: center;
+}
+
+.month-days-display strong {
+  font-size: 21px;
+  line-height: 1;
+}
+
+.month-days-display span {
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.month-calendar-grid {
+  gap: 6px;
+  padding: 0 10px;
+}
+
+.month-day-cell {
+  min-height: 114px;
+  grid-template-rows: 22px 1fr 20px;
+  justify-items: stretch;
+  gap: 4px;
+  padding: 9px 8px 8px;
+  border-radius: 8px;
+}
+
+.month-day-cell > b {
+  justify-self: start;
+}
+
+.month-day-cell .weather-symbol-sm {
+  --scale: 0.84;
+  justify-self: center;
+  align-self: center;
+  transform: none;
+}
+
+.month-day-temps {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.month-day-temps em {
+  color: #8fe8ff;
+  font-style: normal;
+  font-weight: 760;
+}
+
+.month-day-temps strong {
+  color: #ffe76b;
+  font-weight: 820;
+}
+
+.month-calendar-legend {
+  gap: 24px;
+  padding-top: 14px;
+}
+
+.month-calendar-legend span {
+  gap: 9px;
+}
+
+.weather-symbol-legend {
+  --scale: 0.58;
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.16));
+}
+
+.month-calendar-legend i,
+.month-calendar-dots {
+  display: none !important;
+}
+
+.city-field,
+.search-input-wrap,
+.controls-panel,
+.search-line {
+  overflow: visible;
+}
+
+.city-field {
+  position: relative;
+  z-index: 30;
+}
+
+.city-suggestions {
+  z-index: 220;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(95, 111, 178, 0.88), rgba(46, 58, 122, 0.90));
+  box-shadow: 0 28px 70px rgba(0, 8, 32, 0.36), inset 0 1px 0 rgba(255,255,255,0.16);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.city-suggestions > div {
+  max-height: 372px;
+}
+
+.city-suggestion {
+  background: rgba(255,255,255,0.06);
+}
+
+.hero-temp {
+  align-items: flex-start;
+}
+
+.hero-temp span {
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-temp sup {
+  margin-top: 0.08em;
+  margin-left: 5px;
+  line-height: 1;
+  transform: translateY(0.02em);
+}
+
+@media (max-width: 760px) {
+  .brand-hero .brand-caption {
+    gap: 10px;
+    letter-spacing: 0.18em;
+  }
+
+  .month-forecast-button {
+    min-height: 36px;
+    font-size: 13px;
+    padding: 0 12px;
+  }
+
+  .month-day-cell {
+    min-height: 94px;
+  }
+}
+
+
+/* v41: centered saturated app logo and brighter text over photo backgrounds */
+.weather-app,
+.weather-app.rich-bg {
+  --text: rgba(255, 255, 255, 0.99);
+  --muted: rgba(255, 255, 255, 0.84);
+  --faint: rgba(255, 255, 255, 0.66);
+}
+
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  background: #168bef !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  box-shadow:
+    inset 0 -12px 22px rgba(0, 70, 165, 0.20),
+    0 17px 31px rgba(0, 21, 65, 0.20) !important;
+}
+
+.app-logo-sun,
+.brand-hero .app-logo-sun {
+  z-index: 2 !important;
+  left: 21% !important;
+  top: 19% !important;
+  width: 38% !important;
+  height: 38% !important;
+  background: radial-gradient(circle at 34% 32%, #fffde0 0 12%, #fff06a 37%, #ffc928 66%, #ffae17 100%) !important;
+  box-shadow:
+    0 0 20px rgba(255, 232, 79, 0.88),
+    0 0 34px rgba(255, 185, 24, 0.46) !important;
+}
+
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before {
+  inset: -42% !important;
+  background: repeating-conic-gradient(from 4deg, rgba(255, 242, 93, 0.95) 0deg 7deg, transparent 7deg 18deg) !important;
+  -webkit-mask: radial-gradient(circle, transparent 0 48%, #000 50% 76%, transparent 78%) !important;
+  mask: radial-gradient(circle, transparent 0 48%, #000 50% 76%, transparent 78%) !important;
+}
+
+.app-logo-sun::after,
+.brand-hero .app-logo-sun::after {
+  inset: -24% !important;
+  background: radial-gradient(circle, rgba(255, 229, 71, 0.42), transparent 69%) !important;
+}
+
+.app-logo-cloud-back,
+.brand-hero .app-logo-cloud-back {
+  z-index: 3 !important;
+  left: 29% !important;
+  bottom: 36% !important;
+  width: 43% !important;
+  height: 22% !important;
+  opacity: 0.58 !important;
+}
+
+.app-logo-cloud-front,
+.brand-hero .app-logo-cloud-front {
+  z-index: 4 !important;
+  left: 24% !important;
+  bottom: 23% !important;
+  width: 62% !important;
+  height: 34% !important;
+  opacity: 1 !important;
+}
+
+.app-logo-cloud,
+.brand-hero .app-logo-cloud {
+  background:
+    radial-gradient(circle at 23% 29%, rgba(255, 255, 255, 1) 0 17%, transparent 18%),
+    radial-gradient(circle at 43% 9%, rgba(255, 255, 255, 1) 0 26%, transparent 27%),
+    radial-gradient(circle at 64% 3%, rgba(255, 255, 255, 1) 0 31%, transparent 32%),
+    radial-gradient(circle at 84% 31%, rgba(244, 249, 255, 1) 0 21%, transparent 22%),
+    linear-gradient(180deg, #ffffff 0%, #f2f7ff 54%, #c7d8f0 100%) !important;
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.82),
+    inset 0 -10px 14px rgba(113, 135, 184, 0.19),
+    0 2px 6px rgba(0, 39, 105, 0.16) !important;
+}
+
+.brand-caption,
+.home-label,
+.condition-line,
+.place-subtitle,
+.minmax-line,
+.card-title,
+.card-title h3,
+.field span,
+.hour-chip span,
+.hour-chip small,
+.daily-row,
+.rain-chance,
+.low-temp,
+.mini-label,
+.mini-card p,
+.map-note,
+.map-marker span,
+.map-modal-footer,
+.month-calendar-header,
+.month-weekdays,
+.month-calendar-legend,
+.date-picker-weekdays,
+.range-picker-hint,
+.city-suggestion small,
+.city-suggestion em,
+.favorite-place small,
+.favorite-place em,
+.custom-select-button,
+.ghost-button,
+input,
+select {
+  color: rgba(255, 255, 255, 0.91) !important;
+  text-shadow: 0 2px 12px rgba(0, 15, 42, 0.30);
+}
+
+.card-title .scroll-hint,
+.map-open-pill,
+.hour-chip small,
+.month-day-cell,
+.date-picker-day,
+.daily-row .rain-chance,
+.daily-row .low-temp {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.hero-section,
+.forecast-card,
+.mini-card,
+.controls-panel {
+  text-shadow: 0 2px 16px rgba(0, 18, 48, 0.28);
+}
+
+/* v42: balance app logo spacing and make the favicon shape readable at tiny sizes */
+.app-logo-sun,
+.brand-hero .app-logo-sun {
+  left: 25% !important;
+  top: 24% !important;
+  width: 36% !important;
+  height: 36% !important;
+}
+
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before {
+  inset: -36% !important;
+}
+
+.app-logo-cloud-back,
+.brand-hero .app-logo-cloud-back {
+  left: 31% !important;
+  bottom: 34% !important;
+  width: 40% !important;
+  height: 22% !important;
+}
+
+.app-logo-cloud-front,
+.brand-hero .app-logo-cloud-front {
+  left: 27% !important;
+  bottom: 18% !important;
+  width: 58% !important;
+  height: 33% !important;
+}
+
+
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  background: #168bef !important;
+  border-radius: 31px !important;
+  border: none !important;
+  box-shadow: inset 0 -12px 22px rgba(0, 70, 165, 0.20), 0 17px 31px rgba(0, 21, 65, 0.20) !important;
+  padding: 0 !important;
+}
+
+.brand-app-icon.static-app-logo {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px !important;
+  border-radius: 18px !important;
+}
+
+.brand-hero .brand-app-icon.static-app-logo {
+  width: 118px !important;
+  height: 118px !important;
+  flex: 0 0 118px !important;
+  border-radius: 31px !important;
+}
+
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after,
+.brand-hero .brand-app-icon.static-app-logo::before,
+.brand-hero .brand-app-icon.static-app-logo::after,
+.app-logo-gloss,
+.brand-hero .app-logo-gloss {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.app-logo-sun,
+.brand-hero .app-logo-sun,
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before,
+.app-logo-sun::after,
+.brand-hero .app-logo-sun::after,
+.app-logo-cloud,
+.brand-hero .app-logo-cloud,
+.app-logo-cloud-back,
+.brand-hero .app-logo-cloud-back,
+.app-logo-cloud-front,
+.brand-hero .app-logo-cloud-front {
+  display: block !important;
+}
+
+.app-logo-sun,
+.brand-hero .app-logo-sun {
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 21% !important;
+  top: 19% !important;
+  width: 38% !important;
+  height: 38% !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 34% 32%, #fffde0 0 12%, #fff06a 37%, #ffc928 66%, #ffae17 100%) !important;
+  box-shadow: 0 0 20px rgba(255, 232, 79, 0.88), 0 0 34px rgba(255, 185, 24, 0.46) !important;
+}
+
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before,
+.app-logo-sun::after,
+.brand-hero .app-logo-sun::after {
+  content: "" !important;
+  position: absolute !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+}
+
+.app-logo-sun::before,
+.brand-hero .app-logo-sun::before {
+  inset: -42% !important;
+  background: repeating-conic-gradient(from 4deg, rgba(255, 242, 93, 0.95) 0deg 7deg, transparent 7deg 18deg) !important;
+  -webkit-mask: radial-gradient(circle, transparent 0 48%, #000 50% 76%, transparent 78%) !important;
+  mask: radial-gradient(circle, transparent 0 48%, #000 50% 76%, transparent 78%) !important;
+}
+
+.app-logo-sun::after,
+.brand-hero .app-logo-sun::after {
+  inset: -24% !important;
+  background: radial-gradient(circle, rgba(255, 229, 71, 0.42), transparent 69%) !important;
+}
+
+.app-logo-cloud,
+.brand-hero .app-logo-cloud {
+  position: absolute !important;
+  border-radius: 999px !important;
+  background: radial-gradient(circle at 23% 29%, rgba(255, 255, 255, 1) 0 17%, transparent 18%), radial-gradient(circle at 43% 9%, rgba(255, 255, 255, 1) 0 26%, transparent 27%), radial-gradient(circle at 64% 3%, rgba(255, 255, 255, 1) 0 31%, transparent 32%), radial-gradient(circle at 84% 31%, rgba(244, 249, 255, 1) 0 21%, transparent 22%), linear-gradient(180deg, #ffffff 0%, #f2f7ff 54%, #c7d8f0 100%) !important;
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, 0.82), inset 0 -10px 14px rgba(113, 135, 184, 0.19), 0 2px 6px rgba(0, 39, 105, 0.16) !important;
+}
+
+.app-logo-cloud-back,
+.brand-hero .app-logo-cloud-back {
+  z-index: 3 !important;
+  left: 29% !important;
+  bottom: 36% !important;
+  width: 43% !important;
+  height: 22% !important;
+  opacity: 0.58 !important;
+  filter: blur(0.25px) !important;
+}
+
+.app-logo-cloud-front,
+.brand-hero .app-logo-cloud-front {
+  z-index: 4 !important;
+  left: 24% !important;
+  bottom: 23% !important;
+  width: 62% !important;
+  height: 34% !important;
+  opacity: 1 !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  display: none !important;
+}
+
+@media (max-width: 1200px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 94px !important;
+    height: 94px !important;
+    flex-basis: 94px !important;
+    border-radius: 25px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 68px !important;
+    height: 68px !important;
+    flex-basis: 68px !important;
+    border-radius: 19px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 58px !important;
+    height: 58px !important;
+    flex-basis: 58px !important;
+    border-radius: 18px !important;
+  }
+}
+
+/* v21b: restore visible sun in header avatar and lower the cloud, especially on mobile */
+.brand-app-icon.static-app-logo .app-logo-sun,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-sun {
+  z-index: 3 !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-cloud-front,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-cloud-front {
+  z-index: 4 !important;
+  left: 24% !important;
+  bottom: 16% !important;
+  width: 60% !important;
+  height: 29% !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-sun,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-sun {
+  left: 15% !important;
+  top: 14% !important;
+  width: 44% !important;
+  height: 44% !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-sun::before,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-sun::before {
+  inset: -38% !important;
+}
+
+@media (max-width: 760px) {
+  .brand-hero .brand-app-icon.static-app-logo .app-logo-sun,
+  .brand-app-icon.static-app-logo .app-logo-sun {
+    left: 14% !important;
+    top: 13% !important;
+    width: 46% !important;
+    height: 46% !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo .app-logo-cloud-front,
+  .brand-app-icon.static-app-logo .app-logo-cloud-front {
+    left: 23% !important;
+    bottom: 12% !important;
+    width: 58% !important;
+    height: 26% !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-hero .brand-app-icon.static-app-logo .app-logo-sun,
+  .brand-app-icon.static-app-logo .app-logo-sun {
+    left: 12% !important;
+    top: 12% !important;
+    width: 48% !important;
+    height: 48% !important;
+  }
+
+  .brand-hero .brand-app-icon.static-app-logo .app-logo-cloud-front,
+  .brand-app-icon.static-app-logo .app-logo-cloud-front {
+    left: 22% !important;
+    bottom: 10% !important;
+    width: 57% !important;
+    height: 24% !important;
+  }
+}
+
+
+/* v22-final: requested avatar, mobile card text and detail graphic fixes */
+.brand-app-icon.static-app-logo,
+.brand-hero .brand-app-icon.static-app-logo,
+.theme-clear-night .brand-app-icon.static-app-logo,
+.theme-cloudy-night .brand-app-icon.static-app-logo,
+.theme-thunder .brand-app-icon.static-app-logo,
+.theme-rain .brand-app-icon.static-app-logo,
+.theme-snow .brand-app-icon.static-app-logo,
+.theme-fog .brand-app-icon.static-app-logo {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-image,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  z-index: 10 !important;
+}
+
+.brand-app-icon.static-app-logo .app-logo-sun,
+.brand-app-icon.static-app-logo .app-logo-cloud,
+.brand-app-icon.static-app-logo .app-logo-gloss,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-sun,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-cloud,
+.brand-hero .brand-app-icon.static-app-logo .app-logo-gloss,
+.brand-app-icon.static-app-logo::before,
+.brand-app-icon.static-app-logo::after,
+.brand-hero .brand-app-icon.static-app-logo::before,
+.brand-hero .brand-app-icon.static-app-logo::after {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+}
+
+.brand-app-icon.static-app-logo {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px !important;
+}
+
+.brand-hero .brand-app-icon.static-app-logo {
+  width: 118px !important;
+  height: 118px !important;
+  flex: 0 0 118px !important;
+}
+
+@media (min-width: 761px) {
+  .mini-card-humidity .mini-content > div:first-child {
+    transform: translateY(-18px) !important;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 761px) {
+  .brand-hero .brand-app-icon.static-app-logo {
+    width: 94px !important;
+    height: 94px !important;
+    flex-basis: 94px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .brand-app-icon.static-app-logo,
+  .brand-hero .brand-app-icon.static-app-logo,
+  .theme-clear-night .brand-app-icon.static-app-logo,
+  .theme-cloudy-night .brand-app-icon.static-app-logo,
+  .theme-thunder .brand-app-icon.static-app-logo,
+  .theme-rain .brand-app-icon.static-app-logo,
+  .theme-snow .brand-app-icon.static-app-logo,
+  .theme-fog .brand-app-icon.static-app-logo {
+    width: 68px !important;
+    height: 68px !important;
+    flex: 0 0 68px !important;
+  }
+
+  .mini-content > div:first-child > p,
+  .mini-card p {
+    font-size: 12px !important;
+    line-height: 1.22 !important;
+    max-height: 72px !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 36px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform-origin: center center !important;
+    transform: translateY(-50%) scale(1.02) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 30px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform-origin: center center !important;
+    transform: translateY(-50%) scale(1.82) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 22px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform-origin: center center !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand-app-icon.static-app-logo,
+  .brand-hero .brand-app-icon.static-app-logo,
+  .theme-clear-night .brand-app-icon.static-app-logo,
+  .theme-cloudy-night .brand-app-icon.static-app-logo,
+  .theme-thunder .brand-app-icon.static-app-logo,
+  .theme-rain .brand-app-icon.static-app-logo,
+  .theme-snow .brand-app-icon.static-app-logo,
+  .theme-fog .brand-app-icon.static-app-logo {
+    width: 58px !important;
+    height: 58px !important;
+    flex: 0 0 58px !important;
+  }
+
+  .mini-content > div:first-child > p,
+  .mini-card p {
+    font-size: 11.5px !important;
+    line-height: 1.22 !important;
+    max-height: 72px !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 34px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(0.98) !important;
+  }
+
+  .mini-content > .uv-graphic {
+    right: 28px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(1.66) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(1.48) !important;
+  }
+}
+
+/* v23-hotfix: transparent avatar corners, correct mini icons, left-shift mobile UV/wind, clean sun rays and sunrise/sunset timing polish */
+.sun::after,
+.weather-symbol .sun::after,
+.month-day-cell > .weather-symbol > .sun::after,
+.month-calendar-legend .weather-symbol > .sun::after {
+  content: none !important;
+  display: none !important;
+  box-shadow: none !important;
+}
+
+.sun::before,
+.weather-symbol .sun::before,
+.month-day-cell > .weather-symbol > .sun::before,
+.month-calendar-legend .weather-symbol > .sun::before {
+  z-index: -1 !important;
+  inset: -42% !important;
+  background: repeating-conic-gradient(from 4deg, rgba(255, 227, 67, 0.82) 0deg 6deg, transparent 6deg 17deg) !important;
+  -webkit-mask: radial-gradient(circle, transparent 0 48%, #000 50% 78%, transparent 80%) !important;
+  mask: radial-gradient(circle, transparent 0 48%, #000 50% 78%, transparent 80%) !important;
+  filter: blur(0.08px) !important;
+}
+
+.sun,
+.weather-symbol .sun,
+.month-day-cell > .weather-symbol > .sun,
+.month-calendar-legend .weather-symbol > .sun {
+  isolation: isolate !important;
+  overflow: visible !important;
+}
+
+.mini-label .mini-line-icon-uv,
+.mini-label .mini-line-icon-wind {
+  width: 23px !important;
+  height: 23px !important;
+  flex: 0 0 23px !important;
+  opacity: 0.86 !important;
+}
+
+.mini-line-icon-uv::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 6px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 34% 31%, rgba(255,255,255,0.96), rgba(255,236,117,0.96) 42%, rgba(255,190,39,0.90) 100%) !important;
+  box-shadow: 0 0 9px rgba(255, 224, 82, 0.42) !important;
+}
+
+.mini-line-icon-uv::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 1px !important;
+  border-radius: 50% !important;
+  background: repeating-conic-gradient(from 4deg, rgba(255,232,82,0.78) 0deg 7deg, transparent 7deg 19deg) !important;
+  -webkit-mask: radial-gradient(circle, transparent 0 42%, #000 45% 72%, transparent 74%) !important;
+  mask: radial-gradient(circle, transparent 0 42%, #000 45% 72%, transparent 74%) !important;
+}
+
+.mini-line-icon-wind {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M4 8.2h10.6c2.2 0 2.8-3.2.35-3.2-.9 0-1.6.5-1.95 1.2' stroke='rgba(255,255,255,0.78)' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M3.8 12.2h14.4c2.8 0 3.5 4 .42 4-1.12 0-2-.58-2.45-1.45' stroke='rgba(255,255,255,0.82)' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M5 16.4h7.1' stroke='rgba(255,255,255,0.64)' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-size: 23px 23px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.mini-line-icon-wind::before,
+.mini-line-icon-wind::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .mini-content > .uv-graphic {
+    right: 52px !important;
+    transform: translateY(-50%) scale(1.82) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 46px !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 36px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+
+  .mini-content > .temp-graphic i {
+    height: calc(var(--temp-fill-height, 42px) * 0.62) !important;
+    max-height: 41px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-content > .uv-graphic {
+    right: 48px !important;
+    transform: translateY(-50%) scale(1.66) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 42px !important;
+    transform: translateY(-50%) scale(1.48) !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 34px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(1.48) !important;
+  }
+
+  .mini-content > .temp-graphic i {
+    height: calc(var(--temp-fill-height, 42px) * 0.68) !important;
+    max-height: 45px !important;
+  }
+}
+
+/* v24-final-touch: opaque mobile suggestions, aligned hourly header, white UV label, pressure needles and safer mobile graphics */
+@media (max-width: 760px) {
+  .city-field,
+  .controls-panel .city-field {
+    z-index: 5000 !important;
+  }
+
+  .city-suggestions {
+    z-index: 6000 !important;
+    background:
+      linear-gradient(180deg, rgba(142, 203, 234, 0.98), rgba(75, 130, 184, 0.985)) !important;
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    box-shadow:
+      0 28px 80px rgba(0, 9, 38, 0.44),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: blur(8px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(130%) !important;
+  }
+
+  .city-suggestion {
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(255, 255, 255, 0.20) !important;
+  }
+}
+
+.controls-panel .coords-line > button[type="submit"].ghost-button {
+  color: rgba(8, 28, 57, 0.94) !important;
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 0 18px color-mix(in srgb, var(--accent) 42%, transparent),
+    0 10px 24px rgba(0, 25, 70, 0.17) !important;
+}
+
+.controls-panel .coords-line > button[type="submit"].ghost-button:hover:not(:disabled) {
+  transform: translateY(-1px) !important;
+  filter: brightness(1.04) saturate(1.05) !important;
+}
+
+.controls-panel .coords-line > button[type="submit"].ghost-button:disabled {
+  opacity: 0.62 !important;
+  filter: saturate(0.72) !important;
+}
+
+.hourly-card .card-title {
+  align-items: center !important;
+}
+
+.hourly-card .card-title > span:first-child {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
+  font-size: 17px !important;
+  transform: translateY(1px) !important;
+}
+
+.hourly-card .card-title h3 {
+  line-height: 18px !important;
+}
+
+.hour-chip.sunrise-chip {
+  background: linear-gradient(180deg, rgba(134, 229, 255, 0.18), rgba(255, 255, 255, 0.055)) !important;
+}
+
+.mini-line-icon-uv,
+.mini-label .mini-line-icon-uv {
+  width: 23px !important;
+  height: 23px !important;
+  flex: 0 0 23px !important;
+  opacity: 0.82 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='4.2' fill='rgba(255,255,255,0.22)' stroke='rgba(255,255,255,0.78)' stroke-width='1.7'/%3E%3Cpath d='M12 2.7v3M12 18.3v3M2.7 12h3M18.3 12h3M5.4 5.4l2.1 2.1M16.5 16.5l2.1 2.1M18.6 5.4l-2.1 2.1M7.5 16.5l-2.1 2.1' stroke='rgba(255,255,255,0.62)' stroke-width='1.55' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-size: 23px 23px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.mini-line-icon-uv::before,
+.mini-line-icon-uv::after {
+  content: none !important;
+  display: none !important;
+}
+
+.mini-line-icon-pressure,
+.mini-label .mini-line-icon-pressure {
+  width: 23px !important;
+  height: 23px !important;
+  flex: 0 0 23px !important;
+  opacity: 0.84 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M4.4 15.6a7.6 7.6 0 0 1 15.2 0' stroke='rgba(255,255,255,0.72)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M6.7 13.4 5.2 12.8M9.1 9.5 8.2 8M12 8.2V6.4M14.9 9.5 15.8 8M17.3 13.4 18.8 12.8' stroke='rgba(255,255,255,0.42)' stroke-width='1.25' stroke-linecap='round'/%3E%3Cpath d='M12 15.6 16.7 10.8' stroke='rgba(255,255,255,0.84)' stroke-width='1.75' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='15.6' r='1.65' fill='rgba(255,255,255,0.72)'/%3E%3C/svg%3E") !important;
+  background-size: 23px 23px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.mini-line-icon-pressure::before,
+.mini-line-icon-pressure::after {
+  content: none !important;
+  display: none !important;
+}
+
+.pressure-graphic i {
+  left: 50% !important;
+  top: 14px !important;
+  width: 4px !important;
+  height: 52px !important;
+  border-radius: 999px !important;
+  transform-origin: 50% 100% !important;
+  transform: translateX(-50%) rotate(var(--angle)) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.32)) !important;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.26) !important;
+}
+
+.pressure-graphic i::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: -5px !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 5px solid transparent !important;
+  border-right: 5px solid transparent !important;
+  border-bottom: 8px solid rgba(255, 255, 255, 0.92) !important;
+  transform: translateX(-50%) !important;
+}
+
+.pressure-graphic i::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: -6px !important;
+  width: 13px !important;
+  height: 13px !important;
+  border-radius: 50% !important;
+  transform: translateX(-50%) !important;
+  background: radial-gradient(circle at 35% 32%, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.52)) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12), 0 0 10px rgba(255, 255, 255, 0.20) !important;
+}
+
+.weather-symbol .sun::after,
+.sun::after {
+  content: none !important;
+  display: none !important;
+  box-shadow: none !important;
+}
+
+.weather-symbol .sun::before,
+.sun::before {
+  inset: -42% !important;
+  z-index: -1 !important;
+  background: repeating-conic-gradient(from 4deg, rgba(255, 227, 67, 0.84) 0deg 6deg, transparent 6deg 17deg) !important;
+  -webkit-mask: radial-gradient(circle, transparent 0 56%, #000 58% 78%, transparent 80%) !important;
+  mask: radial-gradient(circle, transparent 0 56%, #000 58% 78%, transparent 80%) !important;
+}
+
+.weather-symbol .sun,
+.sun {
+  isolation: isolate !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 760px) {
+  .mini-content > .uv-graphic {
+    right: 68px !important;
+    transform: translateY(-50%) scale(1.82) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 62px !important;
+    transform: translateY(-50%) scale(1.62) !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 36px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(1.02) !important;
+  }
+
+  .mini-content > .temp-graphic i {
+    height: calc(var(--temp-fill-height, 42px) * 0.62) !important;
+    max-height: 41px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .mini-content > .uv-graphic {
+    right: 62px !important;
+    transform: translateY(-50%) scale(1.66) !important;
+  }
+
+  .mini-content > .wind-graphic {
+    right: 56px !important;
+    transform: translateY(-50%) scale(1.48) !important;
+  }
+
+  .mini-content > .temp-graphic {
+    right: 34px !important;
+    top: 50% !important;
+    transform: translateY(-50%) scale(0.98) !important;
+  }
+
+  .mini-content > .temp-graphic i {
+    height: calc(var(--temp-fill-height, 42px) * 0.68) !important;
+    max-height: 45px !important;
+  }
+}
+
+
+/* v25: final polish for buttons, hourly header, sunrise chip, mobile icons, month/calendar frames, white precip icon and pressure spacing */
+.controls-panel .coords-line > button[type="submit"].ghost-button {
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+}
+
+.hourly-card .card-title > span:first-child {
+  transform: translateY(-0.5px) !important;
+}
+
+.hourly-card .card-title h3 {
+  line-height: 1.1 !important;
+}
+
+.card-title-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  opacity: 0.84 !important;
+}
+
+.card-title-icon-precip {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 11.2a7 7 0 1 1 14 0H5Z' stroke='rgba(255,255,255,0.78)' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M12 11.2v6.2' stroke='rgba(255,255,255,0.78)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M12 17.4c0 1.5 1 2.5 2.5 2.5' stroke='rgba(255,255,255,0.62)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M7.2 18.2c.7-.9 1.3-1.8 2-2.7M10.8 19.1c.7-.9 1.3-1.8 2-2.7M14.4 18.2c.7-.9 1.3-1.8 2-2.7' stroke='rgba(255,255,255,0.42)' stroke-width='1.35' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+.month-calendar-grid,
+.date-picker-grid {
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 22px !important;
+  padding: 12px !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+}
+
+.date-picker-grid {
+  border-radius: 18px !important;
+  padding: 10px !important;
+}
+
+.pressure-graphic .pressure-equal {
+  top: 39px !important;
+}
+
+@media (max-width: 760px) {
+  .hour-chip .weather-symbol-sm,
+  .month-day-cell > .weather-symbol-sm {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .hour-chip .weather-symbol .sun,
+  .hour-chip .weather-symbol .moon,
+  .month-day-cell > .weather-symbol > .sun,
+  .month-day-cell > .weather-symbol > .moon {
+    width: 43% !important;
+    height: 43% !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+  }
+}
+
+
+/* v26: sunrise placement, precip icon refinement, shared rounded frames for month/calendar */
+.card-title-icon-precip {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 12.2a7 7 0 1 1 14 0H5Z' stroke='rgba(255,255,255,0.78)' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M12 12.2v6.2' stroke='rgba(255,255,255,0.78)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M12 18.4c0 1.5 1 2.5 2.5 2.5' stroke='rgba(255,255,255,0.62)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M8.2 6.4c.0 1.25-.85 2.15-.85 2.95a.85.85 0 1 0 1.7 0c0-.8-.85-1.7-.85-2.95ZM12 4.8c0 1.4-.95 2.4-.95 3.3a.95.95 0 1 0 1.9 0c0-.9-.95-1.9-.95-3.3ZM15.8 6.4c0 1.25-.85 2.15-.85 2.95a.85.85 0 1 0 1.7 0c0-.8-.85-1.7-.85-2.95Z' fill='rgba(255,255,255,0.52)'/%3E%3C/svg%3E") !important;
+}
+
+.month-calendar-panel {
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 22px !important;
+  padding: 12px !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+}
+
+.month-calendar-panel .month-calendar-grid {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.month-calendar-panel .month-calendar-legend {
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  margin-top: 12px !important;
+  padding-top: 12px !important;
+  background: transparent !important;
+}
+
+.month-calendar-header,
+.date-picker-head {
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 18px !important;
+  padding: 12px 14px !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12) !important;
+}
+
+.month-calendar-header {
+  margin-bottom: 10px !important;
+}
+
+.date-picker-head {
+  margin-bottom: 10px !important;
+}
+
+@media (max-width: 760px) {
+  .month-calendar-panel {
+    border-radius: 18px !important;
+    padding: 10px !important;
+  }
+
+  .month-calendar-panel .month-calendar-legend {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+  }
+
+  .month-calendar-header,
+  .date-picker-head {
+    border-radius: 16px !important;
+    padding: 10px 12px !important;
+  }
+}
+
+
+/* v27 polish: mobile month panel fill, safe range picker overlay, umbrella rain icon, map tile guard, timezone alignment */
+.card-title-icon-precip {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 13.4a7 7 0 0 1 14 0H5Z' stroke='rgba(255,255,255,0.80)' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M12 13.4v5.3' stroke='rgba(255,255,255,0.80)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M12 18.7c0 1.35.95 2.25 2.35 2.25' stroke='rgba(255,255,255,0.64)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M7.7 3.15c0 1.08-.72 1.84-.72 2.52a.72.72 0 0 0 1.44 0c0-.68-.72-1.44-.72-2.52ZM12 2.25c0 1.22-.82 2.10-.82 2.88a.82.82 0 0 0 1.64 0c0-.78-.82-1.66-.82-2.88ZM16.3 3.15c0 1.08-.72 1.84-.72 2.52a.72.72 0 0 0 1.44 0c0-.68-.72-1.44-.72-2.52Z' fill='rgba(255,255,255,0.58)'/%3E%3C/svg%3E") !important;
+}
+
+.month-calendar-panel {
+  overflow: hidden !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.036)),
+    rgba(72, 92, 158, 0.32) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(255,255,255,0.05) !important;
+}
+
+.month-calendar-panel .month-calendar-grid {
+  width: 100% !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+.month-calendar-panel .month-calendar-legend {
+  width: calc(100% + 24px) !important;
+  margin: 12px -12px -12px !important;
+  padding: 12px 12px !important;
+  background: rgba(255,255,255,0.028) !important;
+}
+
+.month-calendar-modal.range-picker-open {
+  overflow: visible !important;
+}
+
+.month-calendar-card.range-picker-open {
+  overflow: visible !important;
+}
+
+.month-calendar-modal.range-picker-open .month-modal-backdrop {
+  z-index: 0 !important;
+}
+
+.month-calendar-modal .range-picker-popover {
+  z-index: 5000 !important;
+}
+
+.month-calendar-modal.range-picker-open .range-picker-popover {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  width: min(380px, calc(100vw - 32px)) !important;
+  max-height: calc(100dvh - 38px) !important;
+  overflow: auto !important;
+  transform: translate(-50%, -50%) !important;
+  box-shadow:
+    0 34px 96px rgba(0, 8, 32, 0.46),
+    inset 0 1px 0 rgba(255,255,255,0.22) !important;
+}
+
+.interactive-map-layer.radar-layer img {
+  background: transparent !important;
+}
+
+@media (max-width: 760px) {
+  .month-calendar-panel {
+    border-radius: 18px !important;
+    padding: 10px !important;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
+      rgba(70, 91, 158, 0.36) !important;
+  }
+
+  .month-calendar-panel .month-calendar-grid {
+    padding: 0 !important;
+  }
+
+  .month-calendar-panel .month-calendar-legend {
+    width: calc(100% + 20px) !important;
+    margin: 10px -10px -10px !important;
+    padding: 10px 8px 11px !important;
+    background: rgba(255,255,255,0.03) !important;
+  }
+
+  .month-calendar-modal.range-picker-open .range-picker-popover {
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+    bottom: auto !important;
+    width: min(356px, calc(100vw - 22px)) !important;
+    max-height: calc(100dvh - 28px) !important;
+    padding: 12px !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .controls-panel .coords-line .custom-select-button {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 38px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .controls-panel .coords-line .custom-select-button > span {
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    line-height: 1 !important;
+    transform: translateY(1px) !important;
+  }
+
+  .controls-panel .coords-line .custom-select-button i {
+    align-self: center !important;
+    margin-top: 0 !important;
+    transform: rotate(45deg) translateY(-1px) !important;
+  }
+
+  .controls-panel .coords-line .custom-select.open .custom-select-button i {
+    transform: rotate(225deg) translate(-1px, -1px) !important;
+  }
+}
+
+
+/* v28: stronger popovers, softer mobile backdrops, full-width month grid, better round mobile icons */
+.card-title-icon-precip {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 13.7a7 7 0 0 1 14 0H5Z' stroke='rgba(255,255,255,0.82)' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M12 13.7v5.1' stroke='rgba(255,255,255,0.82)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M12 18.8c0 1.3.95 2.2 2.25 2.2' stroke='rgba(255,255,255,0.66)' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M7.05 4.45c0 1.05-.68 1.78-.68 2.4a.68.68 0 1 0 1.36 0c0-.62-.68-1.35-.68-2.4Z' fill='rgba(255,255,255,0.82)' transform='rotate(-18 7.05 5.65)'/%3E%3Cpath d='M12 3.25c0 1.18-.76 2.02-.76 2.76a.76.76 0 1 0 1.52 0c0-.74-.76-1.58-.76-2.76Z' fill='rgba(255,255,255,0.88)' transform='rotate(-18 12 4.9)'/%3E%3Cpath d='M16.95 4.45c0 1.05-.68 1.78-.68 2.4a.68.68 0 1 0 1.36 0c0-.62-.68-1.35-.68-2.4Z' fill='rgba(255,255,255,0.82)' transform='rotate(-18 16.95 5.65)'/%3E%3C/svg%3E") !important;
+}
+
+.month-calendar-card {
+  background:
+    linear-gradient(180deg, rgba(119, 137, 204, 0.80), rgba(66, 83, 151, 0.76)),
+    rgba(56, 72, 138, 0.80) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+}
+
+.month-calendar-panel {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04)),
+    rgba(71, 91, 160, 0.38) !important;
+}
+
+.month-calendar-panel .month-calendar-grid {
+  width: calc(100% + 24px) !important;
+  margin: 0 -12px !important;
+  padding: 0 12px 12px !important;
+  background: rgba(255,255,255,0.028) !important;
+}
+
+.month-calendar-panel .month-calendar-legend {
+  width: calc(100% + 24px) !important;
+  margin: 0 -12px -12px !important;
+  padding: 12px 12px !important;
+  background: rgba(255,255,255,0.038) !important;
+}
+
+.favorites-popover,
+.city-suggestions,
+.custom-select-menu,
+.date-picker-popover {
+  background:
+    linear-gradient(180deg, rgba(117, 136, 204, 0.92), rgba(64, 80, 148, 0.90)),
+    rgba(52, 67, 130, 0.90) !important;
+  border: 1px solid rgba(225, 235, 255, 0.18) !important;
+  box-shadow:
+    0 24px 60px rgba(0, 8, 32, 0.34),
+    inset 0 1px 0 rgba(255,255,255,0.16) !important;
+  backdrop-filter: blur(14px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(130%) !important;
+}
+
+.favorites-popover .favorite-place,
+.favorites-popover .save-favorite-button,
+.city-suggestion,
+.custom-select-menu button,
+.date-picker-day,
+.date-picker-head,
+.date-picker-weekdays,
+.date-picker-grid {
+  background-color: rgba(255,255,255,0.085) !important;
+}
+
+@media (max-width: 760px) {
+  .month-calendar-card {
+    background:
+      linear-gradient(180deg, rgba(120, 138, 204, 0.84), rgba(69, 86, 152, 0.82)),
+      rgba(57, 72, 138, 0.84) !important;
+  }
+
+  .month-calendar-panel .month-calendar-grid {
+    width: calc(100% + 20px) !important;
+    margin: 0 -10px !important;
+    padding: 0 10px 10px !important;
+    background: rgba(255,255,255,0.032) !important;
+  }
+
+  .month-calendar-panel .month-calendar-legend {
+    width: calc(100% + 20px) !important;
+    margin: 0 -10px -10px !important;
+    padding: 10px 8px 11px !important;
+    background: rgba(255,255,255,0.042) !important;
+  }
+
+  .map-modal-backdrop,
+  .month-calendar-modal .month-modal-backdrop {
+    background: rgba(8, 12, 30, 0.32) !important;
+    backdrop-filter: blur(8px) saturate(115%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(115%) !important;
+  }
+
+  .favorites-popover,
+  .city-suggestions,
+  .custom-select-menu,
+  .date-picker-popover {
+    backdrop-filter: blur(12px) saturate(124%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(124%) !important;
+  }
+
+  .hour-chip .weather-symbol,
+  .hour-chip .weather-symbol-sm,
+  .month-day-cell .weather-symbol,
+  .month-day-cell .weather-symbol-sm {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .hour-chip .weather-symbol-sm {
+    --scale: 0.48 !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+  }
+
+  .month-day-cell .weather-symbol-sm {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .hour-chip .weather-symbol .sun,
+  .hour-chip .weather-symbol .moon,
+  .month-day-cell > .weather-symbol > .sun,
+  .month-day-cell > .weather-symbol > .moon {
+    width: 43% !important;
+    height: 43% !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+  }
+
+  .hour-chip .icon-sunny > .sun,
+  .hour-chip .icon-moon > .moon,
+  .month-day-cell > .icon-sunny > .sun,
+  .month-day-cell > .icon-moon > .moon {
+    left: 50% !important;
+    top: 48% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}

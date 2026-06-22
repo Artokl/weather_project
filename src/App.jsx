@@ -131,6 +131,7 @@ const TEXT = {
     radarMoving: 'Осадки движутся по направлению ветра',
     noPrecipitationNearby: 'Заметных осадков рядом не ожидается',
     sunsetChip: 'Закат',
+    sunriseChip: 'Рассвет',
     dragToScroll: 'зажмите и тяните',
     openPrecipitationMap: 'Открыть карту',
     closeMap: 'Закрыть карту',
@@ -236,6 +237,7 @@ const TEXT = {
     radarMoving: 'Precipitation moves with wind direction',
     noPrecipitationNearby: 'No notable precipitation nearby is expected',
     sunsetChip: 'Sunset',
+    sunriseChip: 'Sunrise',
     dragToScroll: 'hold and drag',
     openPrecipitationMap: 'Open map',
     closeMap: 'Close map',
@@ -474,12 +476,15 @@ function isRainCode(code) {
   return [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(Number(code));
 }
 
-function getSunPhaseForBackground(current, selectedDay, selectedDayIndex) {
+function getSunPhaseForBackground(current, selectedDay, selectedDayIndex, utcOffsetSeconds, nowMs = Date.now()) {
   if (selectedDayIndex !== 0) {
     return 'day';
   }
 
-  const now = current?.time ? new Date(current.time).getTime() : NaN;
+  const offsetLocalIso = getOffsetLocalIso(utcOffsetSeconds, nowMs);
+  const now = offsetLocalIso
+    ? new Date(offsetLocalIso).getTime()
+    : (current?.time ? new Date(current.time).getTime() : NaN);
   const sunrise = selectedDay?.sunrise ? new Date(selectedDay.sunrise).getTime() : NaN;
   const sunset = selectedDay?.sunset ? new Date(selectedDay.sunset).getTime() : NaN;
 
@@ -487,17 +492,17 @@ function getSunPhaseForBackground(current, selectedDay, selectedDayIndex) {
     return current?.is_day === 0 ? 'night' : 'day';
   }
 
-  const transitionWindow = 75 * 60 * 1000;
+  const transitionWindow = 60 * 60 * 1000;
 
-  if (now >= sunrise - transitionWindow && now <= sunrise + transitionWindow) {
+  if (now >= sunrise - transitionWindow && now < sunrise) {
     return 'dawn';
   }
 
-  if (now >= sunset - transitionWindow && now <= sunset + transitionWindow) {
+  if (now >= sunset - transitionWindow && now < sunset) {
     return 'sunset';
   }
 
-  if (now < sunrise || now > sunset || current?.is_day === 0) {
+  if (now < sunrise || now >= sunset) {
     return 'night';
   }
 
@@ -505,54 +510,25 @@ function getSunPhaseForBackground(current, selectedDay, selectedDayIndex) {
 }
 
 function getBackgroundCondition(meta, selectedDay, currentHour, selectedDayIndex) {
-  const code = Number(selectedDayIndex === 0 ? (currentHour?.weatherCode ?? meta?.code) : selectedDay?.weatherCode);
   const icon = String(meta?.weather?.iconType || selectedDay?.iconType || currentHour?.iconType || 'cloudy').replace('-night', '');
-  const precipitation = Number(selectedDayIndex === 0 ? (currentHour?.precipitation ?? meta?.current?.precipitation) : selectedDay?.precipitationSum);
-  const cloudCover = Number(selectedDayIndex === 0 ? (currentHour?.cloudCover ?? meta?.current?.cloud_cover) : undefined);
-  const hasMeasuredPrecipitation = Number.isFinite(precipitation) && precipitation >= (selectedDayIndex === 0 ? 0.08 : 0.35);
-  const hasSignificantPrecipitation = Number.isFinite(precipitation) && precipitation >= (selectedDayIndex === 0 ? 1.4 : 2);
+  const iconToBackground = {
+    sunny: 'clear',
+    moon: 'clear',
+    sunset: 'clear',
+    partly: 'partly',
+    cloudy: 'cloudy',
+    fog: 'fog',
+    drizzle: 'drizzle',
+    rain: 'rain',
+    thunder: 'thunder',
+    snow: 'snow'
+  };
 
-  if (icon === 'thunder' || (isThunderCode(code) && hasMeasuredPrecipitation)) {
-    return 'thunder';
-  }
-
-  if (icon === 'snow' || (isSnowCode(code) && hasMeasuredPrecipitation)) {
-    return 'snow';
-  }
-
-  if (isFogCode(code) || (Number.isFinite(currentHour?.visibility) && currentHour.visibility < 2000)) {
-    return 'fog';
-  }
-
-  if ((icon === 'rain' && hasSignificantPrecipitation) || (isHeavyRainCode(code) && hasSignificantPrecipitation)) {
-    return 'heavy-rain';
-  }
-
-  if (icon === 'rain' || (isRainCode(code) && hasMeasuredPrecipitation)) {
-    return 'rain';
-  }
-
-  if (icon === 'drizzle' || (Number.isFinite(precipitation) && precipitation >= (selectedDayIndex === 0 ? 0.08 : 0.35))) {
-    return 'drizzle';
-  }
-
-  if (Number.isFinite(cloudCover) && cloudCover >= 86) {
-    return 'cloudy';
-  }
-
-  if (icon === 'cloudy') {
-    return 'cloudy';
-  }
-
-  if (icon === 'partly' || (Number.isFinite(cloudCover) && cloudCover >= 32)) {
-    return 'partly';
-  }
-
-  return 'clear';
+  return iconToBackground[icon] || 'cloudy';
 }
 
-function getRealisticBackgroundClass(meta, selectedDay, currentHour, selectedDayIndex) {
-  const phase = getSunPhaseForBackground(meta?.current, selectedDay, selectedDayIndex);
+function getRealisticBackgroundClass(meta, selectedDay, currentHour, selectedDayIndex, utcOffsetSeconds, nowMs = Date.now()) {
+  const phase = getSunPhaseForBackground(meta?.current, selectedDay, selectedDayIndex, utcOffsetSeconds, nowMs);
   const condition = getBackgroundCondition(meta, selectedDay, currentHour, selectedDayIndex);
   const nightFlag = phase === 'night' ? 'bg-is-night' : 'bg-is-light';
 
@@ -923,7 +899,7 @@ function buildHourlyForDate(data, forecast, selectedDate, selectedDayIndex, lang
   if (selectedDayIndex !== 0 || !data.current?.time) {
     const dayStart = new Date(`${selectedDate}T00:00`).getTime();
     const dayEnd = new Date(`${selectedDate}T23:59`).getTime();
-    return withSunsetChip(
+    return withSunEventChips(
       hourlyItems.filter((item) => item.timestamp >= dayStart && item.timestamp <= dayEnd).slice(0, 24),
       selectedDay,
       language
@@ -969,34 +945,70 @@ function buildHourlyForDate(data, forecast, selectedDate, selectedDayIndex, lang
   endTime.setHours(endTime.getHours() + 23);
 
   const futureHours = hourlyItems.filter((item) => item.timestamp >= nextHour.getTime() && item.timestamp <= endTime.getTime());
-  return withSunsetChip([currentItem, ...futureHours].slice(0, 24), selectedDay, language);
+  const nextDay = forecast[selectedDayIndex + 1] || null;
+  return withSunEventChips([currentItem, ...futureHours].slice(0, 24), [selectedDay, nextDay], language);
 }
 
-function withSunsetChip(items, selectedDay, language) {
-  if (!selectedDay?.sunset || items.length === 0) {
+function withSunEventChips(items, daySources, language) {
+  const safeDaySources = Array.isArray(daySources)
+    ? daySources.filter(Boolean)
+    : (daySources ? [daySources] : []);
+
+  if (safeDaySources.length === 0 || items.length === 0) {
     return items;
   }
 
-  const sunsetTime = new Date(selectedDay.sunset).getTime();
   const firstTime = items[0].timestamp;
   const lastTime = items[items.length - 1].timestamp;
+  const seen = new Set();
 
-  if (sunsetTime < firstTime || sunsetTime > lastTime + 60 * 60 * 1000) {
+  const sunItems = safeDaySources
+    .flatMap((day) => ([
+      {
+        type: 'sunrise',
+        time: day.sunrise,
+        label: language === 'en' ? 'Sunrise' : 'Рассвет',
+        weatherTitle: language === 'en' ? 'Sunrise' : 'Рассвет солнца',
+        iconType: 'sunset'
+      },
+      {
+        type: 'sunset',
+        time: day.sunset,
+        label: language === 'en' ? 'Sunset' : 'Закат',
+        weatherTitle: language === 'en' ? 'Sunset' : 'Закат солнца',
+        iconType: 'sunset'
+      }
+    ]))
+    .map((event) => {
+      const timestamp = event.time ? new Date(event.time).getTime() : NaN;
+      if (!Number.isFinite(timestamp) || timestamp < firstTime || timestamp > lastTime + 60 * 60 * 1000) {
+        return null;
+      }
+
+      const key = `${event.type}-${event.time}`;
+      if (seen.has(key)) {
+        return null;
+      }
+      seen.add(key);
+
+      return {
+        type: event.type,
+        time: event.time,
+        timestamp,
+        label: event.label,
+        temp: null,
+        precipitationProbability: null,
+        weatherTitle: event.weatherTitle,
+        iconType: event.iconType
+      };
+    })
+    .filter(Boolean);
+
+  if (sunItems.length === 0) {
     return items;
   }
 
-  const sunsetItem = {
-    type: 'sunset',
-    time: selectedDay.sunset,
-    timestamp: sunsetTime,
-    label: language === 'en' ? 'Sunset' : 'Закат',
-    temp: null,
-    precipitationProbability: null,
-    weatherTitle: language === 'en' ? 'Sunset' : 'Закат солнца',
-    iconType: 'sunset'
-  };
-
-  return [...items, sunsetItem].sort((left, right) => left.timestamp - right.timestamp);
+  return [...items, ...sunItems].sort((left, right) => left.timestamp - right.timestamp);
 }
 
 function getRangeStyle(day, allDays, currentTemp = null) {
@@ -1143,6 +1155,24 @@ function formatOffsetClock(utcOffsetSeconds, nowMs = Date.now()) {
   const minutes = String(shifted.getUTCMinutes()).padStart(2, '0');
 
   return `${hours}:${minutes}`;
+}
+
+function getOffsetLocalIso(utcOffsetSeconds, nowMs = Date.now()) {
+  const offset = Number(utcOffsetSeconds);
+
+  if (!Number.isFinite(offset)) {
+    return '';
+  }
+
+  const shifted = new Date(nowMs + offset * 1000);
+  const year = shifted.getUTCFullYear();
+  const month = String(shifted.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(shifted.getUTCDate()).padStart(2, '0');
+  const hours = String(shifted.getUTCHours()).padStart(2, '0');
+  const minutes = String(shifted.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(shifted.getUTCSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 }
 
 function getVisibilityNote(value, text) {
@@ -1533,10 +1563,10 @@ function formatRadarTime(timestamp, language) {
 function AppLogo() {
   return (
     <span className="brand-app-icon static-app-logo" aria-hidden="true">
+      <img className="app-logo-image" src={`${import.meta.env.BASE_URL}app-icon.png`} alt="" />
       <span className="app-logo-sun" />
       <span className="app-logo-cloud app-logo-cloud-back" />
       <span className="app-logo-cloud app-logo-cloud-front" />
-      <span className="app-logo-gloss" />
     </span>
   );
 }
@@ -1737,9 +1767,9 @@ function MonthForecastModal({
   };
 
   return (
-    <div className="month-modal month-calendar-modal" role="dialog" aria-modal="true" aria-label={text.monthForecast} onWheel={stopScrollBubble} onTouchMove={stopScrollBubble}>
+    <div className={`month-modal month-calendar-modal ${rangePickerOpen ? 'range-picker-open' : ''}`} role="dialog" aria-modal="true" aria-label={text.monthForecast} onWheel={stopScrollBubble} onTouchMove={stopScrollBubble}>
       <button className="month-modal-backdrop" type="button" onClick={onClose} aria-label={text.closeMonth} />
-      <section className="month-modal-card month-calendar-card glass-card" onWheel={stopScrollBubble} onTouchMove={stopScrollBubble}>
+      <section className={`month-modal-card month-calendar-card glass-card ${rangePickerOpen ? 'range-picker-open' : ''}`} onWheel={stopScrollBubble} onTouchMove={stopScrollBubble}>
         <div className="month-calendar-header">
           <h3>{text.monthForecast}</h3>
           <button className="month-close-button" type="button" onClick={onClose} aria-label={text.closeMonth}>×</button>
@@ -1772,27 +1802,29 @@ function MonthForecastModal({
           {weekDays.map((item) => <span key={item}>{item}</span>)}
         </div>
 
-        <div className="month-calendar-grid" onWheel={stopScrollBubble} onTouchMove={stopScrollBubble}>
-          {safeVisibleDays.map((day) => (
-            <button
-              className={`month-day-cell ${day.isEstimated ? 'estimated' : ''}`}
-              type="button"
-              key={`${day.date}-${day.monthIndex}`}
-              onClick={() => onSelectDay(day)}
-              title={text.selectDay}
-            >
-              <b>{new Date(`${day.date}T12:00:00`).getDate()}</b>
-              <WeatherIcon type={day.iconType} size="sm" title={day.weatherTitle} />
-              <span className="month-day-temps"><em>{round(day.minTemp)}°</em><strong>{round(day.maxTemp)}°</strong></span>
-            </button>
-          ))}
-        </div>
+        <div className="month-calendar-panel">
+          <div className="month-calendar-grid" onWheel={stopScrollBubble} onTouchMove={stopScrollBubble}>
+            {safeVisibleDays.map((day) => (
+              <button
+                className={`month-day-cell ${day.isEstimated ? 'estimated' : ''}`}
+                type="button"
+                key={`${day.date}-${day.monthIndex}`}
+                onClick={() => onSelectDay(day)}
+                title={text.selectDay}
+              >
+                <b>{new Date(`${day.date}T12:00:00`).getDate()}</b>
+                <WeatherIcon type={day.iconType} size="sm" title={day.weatherTitle} />
+                <span className="month-day-temps"><em>{round(day.minTemp)}°</em><strong>{round(day.maxTemp)}°</strong></span>
+              </button>
+            ))}
+          </div>
 
-        <div className="month-calendar-legend">
-          <span><WeatherIcon type="sunny" size="legend" title="" />{language === 'en' ? 'Sunny' : 'Солнечно'}</span>
-          <span><WeatherIcon type="cloudy" size="legend" title="" />{language === 'en' ? 'Cloudy' : 'Облачно'}</span>
-          <span><WeatherIcon type="rain" size="legend" title="" />{language === 'en' ? 'Rain' : 'Дождь'}</span>
-          <span><WeatherIcon type="thunder" size="legend" title="" />{language === 'en' ? 'Storm' : 'Гроза'}</span>
+          <div className="month-calendar-legend">
+            <span><WeatherIcon type="sunny" size="legend" title="" />{language === 'en' ? 'Sunny' : 'Солнечно'}</span>
+            <span><WeatherIcon type="cloudy" size="legend" title="" />{language === 'en' ? 'Cloudy' : 'Облачно'}</span>
+            <span><WeatherIcon type="rain" size="legend" title="" />{language === 'en' ? 'Rain' : 'Дождь'}</span>
+            <span><WeatherIcon type="thunder" size="legend" title="" />{language === 'en' ? 'Storm' : 'Гроза'}</span>
+          </div>
         </div>
       </section>
     </div>
@@ -1865,7 +1897,7 @@ function PrecipitationMap({ latitude, longitude, selectedDay, selectedDayIndex =
   return (
     <article className="glass-card forecast-card precip-map-card">
       <div className="card-title">
-        <span>☔</span>
+        <span className="card-title-icon card-title-icon-precip" aria-hidden="true" />
         <h3>{text.precipitationMap}</h3>
       </div>
       <button
@@ -1916,6 +1948,7 @@ function InteractivePrecipitationMap({ open, onClose, latitude, longitude, selec
   const [clockTick, setClockTick] = useState(() => Date.now());
   const [pointLoading, setPointLoading] = useState(false);
   const mapDragRef = useRef({ active: false, pointerId: null, startX: 0, startY: 0, startView: null });
+  const mapPinchRef = useRef({ active: false, startDistance: 0, startZoom: 5 });
   const pointRequestRef = useRef(0);
   const fallbackPrecipitationChance = Number(selectedDay?.precipitationProbability || 0);
   const fallbackPrecipitationSum = Number(selectedDay?.precipitationSum || 0);
@@ -1927,7 +1960,8 @@ function InteractivePrecipitationMap({ open, onClose, latitude, longitude, selec
   const direction = Number(pointWeather?.direction ?? fallbackDirection);
   const displayTemp = pointWeather?.temp ?? fallbackTemp;
   const hasPrecipitation = precipitationChance > 20 || precipitationSum > 0;
-  const showLiveRadar = isCurrentDay && Boolean(radarFrame?.path) && view.zoom <= 10;
+  const liveRadarMaxZoom = 5;
+  const showLiveRadar = isCurrentDay && Boolean(radarFrame?.path) && view.zoom <= liveRadarMaxZoom;
   const mapStatusLabel = hasPrecipitation ? text.radarMoving : text.noPrecipitationNearby;
   const mapDateLabel = formatPillDate(pointWeather?.date || selectedDay?.date, language);
   const cornerLabel = isCurrentDay
@@ -2035,14 +2069,15 @@ function InteractivePrecipitationMap({ open, onClose, latitude, longitude, selec
     };
     element.classList.add('dragging');
     element.setPointerCapture?.(event.pointerId);
+    event.preventDefault();
   }
 
-  function handleMapPointerMove(event) {
+  function moveMapByClientPoint(clientX, clientY) {
     const drag = mapDragRef.current;
     if (!drag.active || !drag.startView) return;
 
-    const dx = event.clientX - drag.startX;
-    const dy = event.clientY - drag.startY;
+    const dx = clientX - drag.startX;
+    const dy = clientY - drag.startY;
     const startWorld = latLonToWorld(drag.startView.latitude, drag.startView.longitude, drag.startView.zoom);
     const nextWorld = {
       x: startWorld.x - dx / 256,
@@ -2055,6 +2090,13 @@ function InteractivePrecipitationMap({ open, onClose, latitude, longitude, selec
       longitude: normalizeLongitude(nextCoordinates.longitude),
       zoom: drag.startView.zoom
     });
+  }
+
+  function handleMapPointerMove(event) {
+    const drag = mapDragRef.current;
+    if (!drag.active || !drag.startView) return;
+
+    moveMapByClientPoint(event.clientX, event.clientY);
     event.preventDefault();
   }
 
@@ -2065,6 +2107,75 @@ function InteractivePrecipitationMap({ open, onClose, latitude, longitude, selec
     event.currentTarget.classList.remove('dragging');
     event.currentTarget.releasePointerCapture?.(drag.pointerId);
     mapDragRef.current = { active: false, pointerId: null, startX: 0, startY: 0, startView: null };
+  }
+
+  function handleMapPointerLeave(event) {
+    if (event.pointerType === 'mouse') {
+      finishMapDrag(event);
+    }
+  }
+
+  function handleMapTouchStart(event) {
+    if (event.touches.length === 2) {
+      const firstTouch = event.touches[0];
+      const secondTouch = event.touches[1];
+      mapPinchRef.current = {
+        active: true,
+        startDistance: Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY),
+        startZoom: view.zoom
+      };
+      mapDragRef.current = { active: false, pointerId: null, startX: 0, startY: 0, startView: null };
+      event.currentTarget.classList.add('dragging');
+      event.preventDefault();
+      return;
+    }
+
+    if (event.touches.length !== 1) return;
+
+    const touch = event.touches[0];
+    mapDragRef.current = {
+      active: true,
+      pointerId: 'touch',
+      startX: touch.clientX,
+      startY: touch.clientY,
+      startView: view
+    };
+    event.currentTarget.classList.add('dragging');
+    event.preventDefault();
+  }
+
+  function handleMapTouchMove(event) {
+    if (event.touches.length === 2 && mapPinchRef.current.active) {
+      const firstTouch = event.touches[0];
+      const secondTouch = event.touches[1];
+      const nextDistance = Math.hypot(secondTouch.clientX - firstTouch.clientX, secondTouch.clientY - firstTouch.clientY);
+      const startDistance = mapPinchRef.current.startDistance || nextDistance;
+
+      if (startDistance > 0) {
+        const zoomDelta = Math.round(Math.log2(nextDistance / startDistance));
+        if (zoomDelta !== 0) {
+          setView((currentView) => ({
+            ...currentView,
+            zoom: clamp(mapPinchRef.current.startZoom + zoomDelta, 2, 18)
+          }));
+        }
+      }
+
+      event.preventDefault();
+      return;
+    }
+
+    if (event.touches.length !== 1) return;
+
+    const touch = event.touches[0];
+    moveMapByClientPoint(touch.clientX, touch.clientY);
+    event.preventDefault();
+  }
+
+  function finishMapTouch(event) {
+    mapDragRef.current = { active: false, pointerId: null, startX: 0, startY: 0, startView: null };
+    mapPinchRef.current = { active: false, startDistance: 0, startZoom: view.zoom };
+    event.currentTarget.classList.remove('dragging');
   }
 
   return (
@@ -2086,7 +2197,11 @@ function InteractivePrecipitationMap({ open, onClose, latitude, longitude, selec
           onPointerMove={handleMapPointerMove}
           onPointerUp={finishMapDrag}
           onPointerCancel={finishMapDrag}
-          onPointerLeave={finishMapDrag}
+          onPointerLeave={handleMapPointerLeave}
+          onTouchStart={handleMapTouchStart}
+          onTouchMove={handleMapTouchMove}
+          onTouchEnd={finishMapTouch}
+          onTouchCancel={finishMapTouch}
         >
           <div className="interactive-map-layer base-layer" aria-hidden="true">
             {tiles.map((tile) => (
@@ -2190,6 +2305,7 @@ export default function App() {
     }
   });
   const [radarFrame, setRadarFrame] = useState(null);
+  const [backgroundClockTick, setBackgroundClockTick] = useState(() => Date.now());
   const searchRequestId = useRef(0);
   const cityFieldRef = useRef(null);
   const favoriteMenuRef = useRef(null);
@@ -2215,6 +2331,11 @@ export default function App() {
     () => buildHourlyForDate(weatherData, forecast, meta.selectedDay?.date, selectedDayIndex, language),
     [weatherData, forecast, meta.selectedDay?.date, selectedDayIndex, language]
   );
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => setBackgroundClockTick(Date.now()), 60 * 1000);
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     let frame = null;
@@ -2695,7 +2816,7 @@ export default function App() {
   const current = meta.current;
   const noonHour = hourly.find((item) => Number(String(item.time).slice(11, 13)) >= 12) || hourly[Math.floor(hourly.length / 2)] || {};
   const currentHour = hourly[0] || {};
-  const realisticBackgroundClass = getRealisticBackgroundClass(meta, selectedDay, currentHour, selectedDayIndex);
+  const realisticBackgroundClass = getRealisticBackgroundClass(meta, selectedDay, currentHour, selectedDayIndex, weatherData?.utc_offset_seconds, backgroundClockTick);
   const feels = selectedDayIndex === 0 ? current?.apparent_temperature : selectedDay?.apparentMax;
   const measured = selectedDayIndex === 0 ? current?.temperature_2m : selectedDay?.maxTemp;
   const selectedWindSpeed = selectedDayIndex === 0 ? current?.wind_speed_10m : selectedDay?.windMax;
@@ -2723,7 +2844,7 @@ export default function App() {
           label: text.uv,
           value: round(selectedUvIndex),
           note: getUvAdvice(selectedUvIndex, language, text),
-          icon: '☀︎',
+          iconClass: 'uv',
           numericValue: selectedUvIndex,
           max: 12
         },
@@ -2733,7 +2854,7 @@ export default function App() {
           value: `${round(selectedDayIndex === 0 ? current?.wind_speed_10m : selectedDay.windMax)} ${text.windUnit}`,
           note: `${text.gusts}: ${round(selectedDayIndex === 0 ? current?.wind_gusts_10m : selectedDay.windGusts)} ${text.windUnit}
 ${text.directionLabel}: ${windDirection(selectedDayIndex === 0 ? current?.wind_direction_10m : selectedDay.windDirection, language)}`,
-          icon: '≋',
+          iconClass: 'wind',
           numericValue: selectedDayIndex === 0 ? current?.wind_speed_10m : selectedDay.windMax,
           max: 20,
           direction: selectedDayIndex === 0 ? current?.wind_direction_10m : selectedDay.windDirection
@@ -2916,7 +3037,7 @@ ${Number(selectedDay.precipitationSum) > 0 || Number(selectedDay.precipitationPr
                 {loading ? text.loading : text.applyCoords}
               </button>
 
-              <div className="segmented" aria-label={text.temperature}>
+              <div className="segmented unit-toggle" aria-label={text.temperature}>
                 <button type="button" className={temperatureUnit === 'celsius' ? 'active' : ''} onClick={() => handleTemperatureUnitChange('celsius')}>°C</button>
                 <button type="button" className={temperatureUnit === 'fahrenheit' ? 'active' : ''} onClick={() => handleTemperatureUnitChange('fahrenheit')}>°F</button>
               </div>
@@ -2929,7 +3050,7 @@ ${Number(selectedDay.precipitationSum) > 0 || Number(selectedDay.precipitationPr
                 onChange={handleTimezoneChange}
               />
 
-              <div className="segmented" aria-label={text.language}>
+              <div className="segmented language-toggle" aria-label={text.language}>
                 <button type="button" className={language === 'ru' ? 'active' : ''} onClick={() => setLanguage('ru')}>RU</button>
                 <button type="button" className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button>
               </div>
@@ -2985,15 +3106,15 @@ ${Number(selectedDay.precipitationSum) > 0 || Number(selectedDay.precipitationPr
                 >
                   {hourly.map((hour) => (
                     <div
-                      className={`hour-chip ${hour.type === 'sunset' ? 'sunset-chip' : ''}`}
+                      className={`hour-chip ${hour.type === 'sunset' ? 'sunset-chip' : ''} ${hour.type === 'sunrise' ? 'sunrise-chip' : ''}`}
                       key={`${hour.time}-${hour.isCurrent ? 'now' : hour.type}`}
                       title={hour.weatherTitle}
-                      data-hour={hour.type === 'sunset' ? '' : String(new Date(hour.time).getHours()).padStart(2, '0')}
+                      data-hour={hour.type === 'sunset' || hour.type === 'sunrise' ? '' : String(new Date(hour.time).getHours()).padStart(2, '0')}
                     >
-                      <span>{hour.isCurrent ? text.current : hour.type === 'sunset' ? formatTime(hour.time, language) : formatHour(hour.time, language)}</span>
+                      <span>{hour.isCurrent ? text.current : hour.type === 'sunset' || hour.type === 'sunrise' ? formatTime(hour.time, language) : formatHour(hour.time, language)}</span>
                       <WeatherIcon type={hour.iconType} size="sm" title={hour.weatherTitle} />
-                      <b>{hour.type === 'sunset' ? text.sunsetChip : `${round(hour.temp)}°`}</b>
-                      <small>{hour.type === 'sunset' ? '' : `${round(hour.precipitationProbability)}%`}</small>
+                      <b>{hour.type === 'sunset' ? text.sunsetChip : hour.type === 'sunrise' ? text.sunriseChip : `${round(hour.temp)}°`}</b>
+                      <small>{hour.type === 'sunset' || hour.type === 'sunrise' ? '' : `${round(hour.precipitationProbability)}%`}</small>
                     </div>
                   ))}
                 </div>
